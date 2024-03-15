@@ -25,8 +25,9 @@ async function scrape(browser) {
   try {
     const allArticles = [];
     for (let i = 1; i <= pageStop; i++) {
-      const url = urlGeneric + i + "?hasPrice=true";
+      const url = urlGeneric + i;
       const page = await browser.newPage();
+      // Set the viewport to a specific size
       await page.setViewport({ width: 1280, height: 800 });
       await page.goto(url, { waitUntil: "networkidle0", timeout: 0 });
 
@@ -56,17 +57,16 @@ async function scrape(browser) {
   }
 }
 async function scrapeUrls(allArticles, browser) {
-  let data = [];
   for (const articles of allArticles) {
     for (const article of articles) {
       if (article.url) {
-        data.push(await scrapeArticle(article.url, browser, article.price));
-        //FIX: only for testing remove the return later
-        return data;
+        await scrapeArticle(article.url, browser, article.price);
+        //FIX: this only scrapes the first article for testing purposes
+        //remove the return statement to scrape all articles
+        return;
       }
     }
   }
-  return data;
 }
 
 async function scrapeArticle(url, browser, price) {
@@ -76,11 +76,25 @@ async function scrapeArticle(url, browser, price) {
   await page.waitForSelector(
     "div.o-announ-specs.mt-2.elevation-1.v-card.v-sheet",
   );
-  let data = await page.evaluate(() => {
-    const labels = document.querySelectorAll("div.spec-name.col-sm-3.col-5");
-    const values = document.querySelectorAll("div.col-sm-9.col-7");
+  const data = await page.evaluate(() => {
+    const data = document.querySelectorAll("div.col-sm-9.col-7");
+    const date = data[1].innerText;
+    //TODO:maybe there is a field here view maybe not so we need to check
+    const papiers = data[2].innerText;
+    const couleur = data[3].innerText;
+    const boite = data[4].innerText;
+    const energie = data[5].innerText;
+    const moteur = data[6].innerText;
+    const finition = data[7].innerText;
+    const modele = data[8].innerText;
+    const marque = data[9].innerText;
+    const kilometrage = data[10].innerText;
+    const annee = data[11].innerText;
     let options = document.querySelectorAll("span.v-chip__content");
+    // Assuming options is an array containing strings
     options = Array.from(options).map((option) => option.innerText);
+
+    // Remove the options with .com, *gmail*, *hotmail*, *announce*, *abonnés* in them
     options = options.filter((option) => {
       return !(
         option.includes(".com") ||
@@ -90,28 +104,38 @@ async function scrapeArticle(url, browser, price) {
         option.includes("abonnés")
       );
     });
-    const data = {};
-    for (let i = 0; i < labels.length; i++) {
-      let label = labels[i].innerText.trim();
-      label = label.replace("é", "e");
-      label = label.replace("è", "e");
-      const value = values[i].innerText.trim();
-      if (label != "Options de voiture" && label != "Numero")
-        data[`${label}`] = value;
-    }
-    data["options"] = options;
-    return data;
+    return {
+      date,
+      papiers,
+      couleur,
+      boite,
+      energie,
+      moteur,
+      finition,
+      modele,
+      marque,
+      kilometrage,
+      annee,
+      options,
+    };
   });
-  data["price"] = price;
+  data.price = price;
+  console.log(data);
   await page.close();
   return data;
 }
 
 const main = async () => {
-  const browser = await puppeteer.launch();
-  const Articles = await scrape(browser);
-  let data = await scrapeUrls(Articles, browser);
-  console.log(data);
+  const browser = await puppeteer.launch({
+    headless: false,
+  });
+  // const Articles = await scrape(browser);
+  // const data = await scrapeUrls(Articles, browser);
+  await scrapeArticle(
+    "https://www.ouedkniss.com/berline-mercedes-classe-c-2022-220-amg-line-draa-ben-khedda-tizi-ouzou-algerie-d40031580",
+    browser,
+    "1 000 000 DA",
+  );
   await browser.close();
 };
 main();
