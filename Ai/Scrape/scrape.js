@@ -1,7 +1,7 @@
 const puppeteer = require("puppeteer");
-
+const fs = require("fs");
 const urlGeneric = "https://www.ouedkniss.com/automobiles/";
-const pageStop = 1;
+const pageStop = 10;
 
 const scrapeUntilEnd = async (page) => {
   try {
@@ -61,8 +61,6 @@ async function scrapeUrls(allArticles, browser) {
     for (const article of articles) {
       if (article.url) {
         data.push(await scrapeArticle(article.url, browser, article.price));
-        //FIX: only for testing remove the return later
-        return data;
       }
     }
   }
@@ -73,9 +71,14 @@ async function scrapeArticle(url, browser, price) {
   const page = await browser.newPage();
   await page.setViewport({ width: 1280, height: 800 });
   await page.goto(url, { waitUntil: "networkidle2", timeout: 0 });
-  await page.waitForSelector(
-    "div.o-announ-specs.mt-2.elevation-1.v-card.v-sheet",
-  );
+  try {
+    await page.waitForSelector(
+      "div.o-announ-specs.mt-2.elevation-1.v-card.v-sheet",
+    );
+  } catch (error) {
+    console.error("Error while waiting for selector:", error);
+    return;
+  }
   let data = await page.evaluate(() => {
     const labels = document.querySelectorAll("div.spec-name.col-sm-3.col-5");
     const values = document.querySelectorAll("div.col-sm-9.col-7");
@@ -107,11 +110,29 @@ async function scrapeArticle(url, browser, price) {
   return data;
 }
 
-const main = async () => {
-  const browser = await puppeteer.launch();
-  const Articles = await scrape(browser);
-  let data = await scrapeUrls(Articles, browser);
-  console.log(data);
-  await browser.close();
-};
+async function main() {
+  try {
+    const browser = await puppeteer.launch();
+    const Articles = await scrape(browser);
+    let data = await scrapeUrls(Articles, browser);
+
+    fs.writeFile(
+      "scraped_data.json",
+      JSON.stringify(data, null, 2),
+      "utf8",
+      (err) => {
+        if (err) {
+          console.error("Error writing JSON file:", err);
+          return;
+        }
+        console.log("Data has been written to scraped_data.json");
+      },
+    );
+
+    await browser.close();
+  } catch (error) {
+    console.error("Error during main execution:", error);
+  }
+}
+
 main();
