@@ -1,7 +1,8 @@
 const puppeteer = require("puppeteer");
 const fs = require("fs");
+
 const urlGeneric = "https://www.ouedkniss.com/automobiles/";
-const pageStop = 10;
+const pageStop = 5;
 
 const scrapeUntilEnd = async (page) => {
   try {
@@ -55,6 +56,7 @@ async function scrape(browser) {
     console.error("Error during scraping:", error);
   }
 }
+let index = 0;
 async function scrapeUrls(allArticles, browser) {
   let data = [];
   for (const articles of allArticles) {
@@ -63,6 +65,19 @@ async function scrapeUrls(allArticles, browser) {
         data.push(await scrapeArticle(article.url, browser, article.price));
       }
     }
+    fs.writeFile(
+      "scraped_data.json",
+      JSON.stringify(data, null, 2),
+      "utf8",
+      (err) => {
+        if (err) {
+          console.error("Error writing JSON file:", err);
+          return;
+        }
+        console.log("Data has been written to scraped_data.json");
+      },
+    );
+    console.log("Fatched page number " + ++index + " of " + pageStop);
   }
   return data;
 }
@@ -114,20 +129,7 @@ async function main() {
   try {
     const browser = await puppeteer.launch();
     const Articles = await scrape(browser);
-    let data = await scrapeUrls(Articles, browser);
-
-    fs.writeFile(
-      "scraped_data.json",
-      JSON.stringify(data, null, 2),
-      "utf8",
-      (err) => {
-        if (err) {
-          console.error("Error writing JSON file:", err);
-          return;
-        }
-        console.log("Data has been written to scraped_data.json");
-      },
-    );
+    await scrapeUrls(Articles, browser);
 
     await browser.close();
   } catch (error) {
