@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project aims to predict the prices of cars using machine learning (ML) and deep learning (DL) techniques. The project utilizes a dataset containing features of various cars such as make, model, year, mileage, and other relevant attributes. We have implemented both traditional ML models and DL models to predict car prices.
+This project aims to predict the prices of cars using machine learning (ML) and deep learning (DL) techniques. The project utilizes a dataset containing features of various cars such as make, model, year, mileage, and other relevant attributes. We have implemented both traditional ML models and DL models to predict car prices
 
 ## Features
 
