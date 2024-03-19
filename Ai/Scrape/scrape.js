@@ -2,7 +2,7 @@ const puppeteer = require("puppeteer");
 const fs = require("fs");
 
 const urlGeneric = "https://www.ouedkniss.com/automobiles/";
-const pageStop = 5;
+const pageStop = 1;
 
 const scrapeUntilEnd = async (page) => {
   try {
@@ -85,7 +85,7 @@ async function scrapeUrls(allArticles, browser) {
 async function scrapeArticle(url, browser, price) {
   const page = await browser.newPage();
   await page.setViewport({ width: 1280, height: 800 });
-  await page.goto(url, { waitUntil: "networkidle2", timeout: 0 });
+  await page.goto(url, { waitUntil: "load", timeout: 0 });
   try {
     await page.waitForSelector(
       "div.o-announ-specs.mt-2.elevation-1.v-card.v-sheet",
@@ -127,7 +127,9 @@ async function scrapeArticle(url, browser, price) {
 
 async function main() {
   try {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+      headless: false,
+    });
     const Articles = await scrape(browser);
     await scrapeUrls(Articles, browser);
 
