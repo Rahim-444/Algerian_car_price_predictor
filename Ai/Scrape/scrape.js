@@ -2,7 +2,7 @@ const puppeteer = require("puppeteer");
 const fs = require("fs");
 
 const urlGeneric = "https://www.ouedkniss.com/automobiles/";
-const pageStop = 1;
+const pageStop = 500;
 
 const scrapeUntilEnd = async (page) => {
   try {
@@ -127,9 +127,7 @@ async function scrapeArticle(url, browser, price) {
 
 async function main() {
   try {
-    const browser = await puppeteer.launch({
-      headless: false,
-    });
+    const browser = await puppeteer.launch();
     const Articles = await scrape(browser);
     await scrapeUrls(Articles, browser);
 
