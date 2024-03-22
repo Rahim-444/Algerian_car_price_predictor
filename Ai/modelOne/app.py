@@ -11,7 +11,6 @@ class PredictionInput(BaseModel):
 @app.post("/predict/")
 async def predict(input_data: PredictionInput):
     feature_values = np.array([input_data.feature_values])
-    
     # Load the saved model
     loaded_model = load_model("ann_model.h5")
 
