@@ -127,7 +127,9 @@ async function scrapeArticle(url, browser, price) {
 
 async function main() {
   try {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+      args: ["--no-sandbox", "--disable-setuid-sandbox", "--single-process"],
+    });
     const Articles = await scrape(browser);
     await scrapeUrls(Articles, browser);
 
