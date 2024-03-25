@@ -1,8 +1,35 @@
 const puppeteer = require("puppeteer");
-const fs = require("fs");
+require("dotenv").config("./.env");
+//mongoose
+const mongoose = require("mongoose");
+
+const MONGODB_URI = process.env.MOMONGODB_URI;
+mongoose.connect(MONGODB_URI);
+
+mongoose.connection.on("error", (err) => {
+  console.error("MongoDB connection error:", err);
+});
+
+mongoose.connection.once("open", () => {
+  console.log("MongoDB connected");
+});
+
+const carSchema = new mongoose.Schema({
+  price: String,
+  Marque: String,
+  Modele: String,
+  Annee: String,
+  Energie: String,
+  Boite_de_vitesse: String,
+  Puissance_fiscale: String,
+  Kilometrage: String,
+  Couleur: String,
+  Portes: String,
+  options: [String],
+});
 
 const urlGeneric = "https://www.ouedkniss.com/automobiles/";
-const pageStop = 1;
+const pageStop = 2;
 
 const scrapeUntilEnd = async (page) => {
   try {
@@ -29,7 +56,7 @@ async function scrape(browser) {
       const url = urlGeneric + i + "?hasPrice=true";
       const page = await browser.newPage();
       await page.setViewport({ width: 1280, height: 800 });
-      await page.goto(url, { waitUntil: "networkidle0", timeout: 0 });
+      await page.goto(url, { waitUntil: "networkidle2", timeout: 0 });
 
       await scrapeUntilEnd(page);
 
@@ -56,7 +83,6 @@ async function scrape(browser) {
     console.error("Error during scraping:", error);
   }
 }
-let index = 0;
 async function scrapeUrls(allArticles, browser) {
   let data = [];
   for (const articles of allArticles) {
@@ -65,19 +91,6 @@ async function scrapeUrls(allArticles, browser) {
         data.push(await scrapeArticle(article.url, browser, article.price));
       }
     }
-    fs.writeFile(
-      "scraped_data.json",
-      JSON.stringify(data, null, 2),
-      "utf8",
-      (err) => {
-        if (err) {
-          console.error("Error writing JSON file:", err);
-          return;
-        }
-        console.log("Data has been written to scraped_data.json");
-      },
-    );
-    console.log("Fatched page number " + ++index + " of " + pageStop);
   }
   return data;
 }
@@ -85,7 +98,7 @@ async function scrapeUrls(allArticles, browser) {
 async function scrapeArticle(url, browser, price) {
   const page = await browser.newPage();
   await page.setViewport({ width: 1280, height: 800 });
-  await page.goto(url, { waitUntil: "load", timeout: 0 });
+  await page.goto(url, { waitUntil: "networkidle2", timeout: 0 });
   try {
     await page.waitForSelector(
       "div.o-announ-specs.mt-2.elevation-1.v-card.v-sheet",
@@ -102,6 +115,7 @@ async function scrapeArticle(url, browser, price) {
     options = options.filter((option) => {
       return !(
         option.includes(".com") ||
+        option.includes(".COM") ||
         option.includes("gmail") ||
         option.includes("hotmail") ||
         option.includes("annonces") ||
@@ -122,17 +136,18 @@ async function scrapeArticle(url, browser, price) {
   });
   data["price"] = price;
   await page.close();
+  //write the data to the database
+  const Car = mongoose.model("Car", carSchema);
+  const car = new Car(data);
+  await car.save();
   return data;
 }
 
 async function main() {
   try {
-    const browser = await puppeteer.launch({
-      headless: false,
-    });
+    const browser = await puppeteer.launch();
     const Articles = await scrape(browser);
     await scrapeUrls(Articles, browser);
-
     await browser.close();
   } catch (error) {
     console.error("Error during main execution:", error);

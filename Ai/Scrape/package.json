@@ -2,7 +2,7 @@
   "name": "scrape",
   "version": "1.0.0",
   "description": "",
-  "main": "rahim.js",
+  "main": "scrape.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,7 +10,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@azure/storage-blob": "^12.17.0",
+    "@google-cloud/storage": "^7.9.0",
     "csv-writer": "^1.6.0",
+    "dotenv": "^16.4.5",
+    "mongodb": "^6.5.0",
+    "mongoose": "^8.2.3",
     "puppeteer": "^22.4.1"
   },
   "devDependencies": {
