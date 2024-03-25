@@ -3,10 +3,10 @@ import { Progress } from "@nextui-org/react";
 
 const ProgressBar = ({step,dataLength}) => {
     const [value, setValue] = React.useState(0);
-    const step1 = step-1;
+    
     React.useEffect(() => {
-        setValue(step1 / dataLength * 100);
-    }, [step1,dataLength]);
+        setValue(step / dataLength * 100);
+    }, [step,dataLength]);
   
     return (
         <Progress

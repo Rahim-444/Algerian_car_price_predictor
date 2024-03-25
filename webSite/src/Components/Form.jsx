@@ -11,7 +11,7 @@ const Form = () => {
 
    //const [currentStep , setCurrentStep] = useState(1);
    const [step, setStep] = useState(0);
-
+   const [submited, setSubmited] = useState(false);
    
    const [Data , setData ] = useState([
   
@@ -79,7 +79,6 @@ const Form = () => {
   { 
     id: 7,
     type: 'text',
-    title:"fin",
     text: 'thanks for participating!',
    
   },
@@ -136,12 +135,15 @@ const handleOptionClick = (option , e) => {
 
   const  handleSubmit = (e) => {
    e.preventDefault();
-   setStep(prevStep => prevStep + 1);
+    if (Data[step].answer != null && Data[step].answer != "") {
+      setStep(prevStep => prevStep + 1);
+    }
+   
   }
 
   const handleNext = (e) => {
     e.preventDefault();
-    if (step != Data.length && Data[step].answer != null && Data[step ].answer != "") {
+    if (step != Data.length-1 && Data[step].answer != null && Data[step].answer != "") {
      setStep(prevStep => prevStep + 1);
     }
   }
@@ -157,9 +159,12 @@ const handleOptionClick = (option , e) => {
   const handlePredict = (e) => {
     try {
      
-         const result = Data.reduce((acc, item) => {
-         acc[item.title] = item.answer;
-         return acc;
+         const result = Data.reduce((acc, item , index) => {
+          
+            
+           item.title &&(acc[item.title] = item.answer);
+            return acc;
+          
         }, {});
         console.log(result);
          
@@ -218,16 +223,16 @@ const handleOptionClick = (option , e) => {
                 <Button text={"Submit"} onClick={handleSubmit} />
               </div>
           ) : (
-            <>i returned null</>
+            <>returned null lol </>
           ) }
           
-           
-          <div>
+      </form>
+
+          <div className="navigation-bar">
           <Button text={"+"} onClick={handleNext}  /> 
           <Button text={"-"} onClick={handleDecrement} /> 
-          <Progress  step={step+1} dataLength={Data.length}/> 
+          <Progress  step={step} dataLength={Data.length}/> 
           </div>
-      </form>
           
       </div>
 
