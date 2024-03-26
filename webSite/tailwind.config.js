@@ -9,7 +9,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#FF6363",
+        primary: "#1D2071",
+        background: "#03092D",
+        Purple: "#902BAD",
+        Blue: "#3F78E1",
       },
       borderWidth: {
         10: "10px",
