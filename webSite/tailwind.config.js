@@ -17,6 +17,9 @@ export default {
       borderWidth: {
         10: "10px",
       },
+      boxShadow: {
+        "custom-light": "0 0 10px #ffffff, 0 0 20px #ffffff",
+      },
     },
   },
   darkMode: "class",
