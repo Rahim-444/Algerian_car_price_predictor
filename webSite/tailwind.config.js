@@ -9,10 +9,18 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#FF6363",
+        primary: "#1D2071",
+        ternary: "#1C23C5",
+        background: "#03092D",
+        Purple: "#902BAD",
+        Blue: "#3F78E1",
+        CardBlue: "#141545",
       },
       borderWidth: {
         10: "10px",
+      },
+      boxShadow: {
+        "custom-light": "0 0 10px #ffffff, 0 0 20px #ffffff",
       },
     },
   },
