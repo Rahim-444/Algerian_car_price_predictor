@@ -1,10 +1,14 @@
 import Form from "./Components/Form.jsx";
 import Hero from "./Components/Hero.jsx";
-import './index.css';
+import InfoSection from "./Components/InfoSection.jsx";
+
 const App = () => {
   return (
     <>
-      <Hero />
+      {/* <Hero /> */}
+      <InfoSection/>
+      {/* <Form /> */}
+      
     </>
   );
 };

@@ -17,7 +17,7 @@
         const canvasRef = useRef(null);
 
         return (
-            <div className="hero  relative ">
+            <div className="hero relative ">
                    <img src={dots} className='dots absolute top-14 left-7'/>
 
                 <div className="hero-content w-screen h-screen  flex justify-center lg:justify-between  items-center">
