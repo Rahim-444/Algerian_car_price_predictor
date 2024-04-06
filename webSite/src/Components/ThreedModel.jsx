@@ -4,6 +4,9 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
 import WebGL from 'three/addons/capabilities/WebGL.js';
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
+
+
 
 const ThreedModel = ({canvasRef}) => {
 
@@ -21,20 +24,25 @@ const ThreedModel = ({canvasRef}) => {
     renderer.setSize(window.innerWidth/2, window.innerHeight/2);
     renderer.sortObjects = false; // Disable depth sorting (might be necessary for specific cases)
     
-    //renderer.setBlending(THREE.AdditiveBlending);
-   // scene.background = new THREE.Color(0xffffff);
-    // Replace 'path/to/your/model.gltf' with the actual path to your asset
-    const loader = new GLTFLoader() 
-
+   // Create a DRACOLoader instance to decode draco files.
+    const dracoLoader = new DRACOLoader();
+    dracoLoader.setDecoderPath('node_modules/three/examples/js/libs/draco'); // replace with the path to your draco decoder files
+   
+  
+    
+    // Create a GLTFLoader instance.
+   var loader = new GLTFLoader();
+    loader.setDRACOLoader(dracoLoader);
+    
     let  model ;
-    loader.load('Cars.gltf', function ( gltf ) {
+    loader.load('Iphone.gltf', function ( gltf ) {
         model = gltf.scene;
-        model.position.set(0, 0,0);  
+        model.position.set(0,0,0);  
         scene.add( model );
         model.rotation.y = 3;
         model.rotation.y = 4;
-
-     }, undefined, function ( error ) {
+        console.log("model loaded")
+     }, undefined, function ( error) {
     	 console.error( error );
     } );
 
@@ -46,9 +54,9 @@ const ThreedModel = ({canvasRef}) => {
     // light.castShadow = true; // default is false
     // scene.add(light);
 
+
      // Enable shadows for the object
     if(model){
-
       model.traverse(function (node) {
     if (node instanceof THREE.Mesh) {
       node.castShadow = true; // default is false
@@ -57,6 +65,7 @@ const ThreedModel = ({canvasRef}) => {
      });
     }
 
+
     //adding orbit controls 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableZoom = false;
@@ -64,24 +73,20 @@ const ThreedModel = ({canvasRef}) => {
     controls.maxPolarAngle = Math.PI / 2;
     controls.update();
 
-    // const groundGeometry = new THREE.PlaneGeometry(20, 20,32,32);
-    // const groundMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 , side: THREE.DoubleSide});
-    // const groundMesh = new THREE.Mesh(groundGeometry, groundMaterial);
-    // groundMesh.rotation.x = -Math.PI / 2;
-    // scene.add(groundMesh);
+   
 
     const light = new THREE.AmbientLight(0xffffff, 1);
     light.position.set(1, 2, 4);
     scene.add(light)
      scene.add(light);
 
+
      
     // const spotlight1 = new THREE.SpotLight(0xffffff, 1);
     // spotlight1.position.set(-4 , 0 , 3);
     // scene.add(spotlight1 );
 
-    
-     
+      
     camera.position.z = 4;
 
     const animate = () => {
@@ -102,19 +107,17 @@ const ThreedModel = ({canvasRef}) => {
 	 // Initiate function or other initializations here
 	 animate();
 
-   
+   } else {
 
-} else {
+	  const warning = WebGL.getWebGLErrorMessage();
+	  console.log(warning);
 
-	const warning = WebGL.getWebGLErrorMessage();
-	console.log(warning);
-
-}
+   }
    }, []);
- return (
-  <div>
-    <canvas ref={canvasRef} className='absolute right-[-7rem] bottom-24' />
-  </div>
+    return (
+     <div>
+       <canvas ref={canvasRef} className='  md:bottom-10  lg:bottom-24 ' />
+     </div>
  );
 }
 
