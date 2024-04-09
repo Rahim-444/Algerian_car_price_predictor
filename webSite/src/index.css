@@ -4,10 +4,9 @@
 
 :root {
   font-family: "Montserrat", sans-serif;
-
-  background-color: #03092d;
-  /* color-scheme: dark; */
+  color-scheme: dark;
   font-synthesis: none;
+  background-color: #03092d;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -52,7 +51,7 @@ swiper-container::part(bullet-active) {
     left: 30% !important;
     transform: translateX(-30%) !important;
   }
-}
+
 
 @media (max-width: 450px) {
   .slider-controler .swiper-button-prev {
@@ -90,4 +89,57 @@ swiper-container::part(bullet-active) {
 
 .swiper-pagination .swiper-pagination-bullet-active {
   background: #ffffff;
+}
+
+.shine {
+  overflow: hidden;
+  position: relative;
+  text-decoration: none;
+}
+
+.shine:hover {
+  box-shadow: 1px 1px 25px 10px Rgba(146, 148, 248, 0.4);
+}
+
+.shine::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, #f0f0f0, transparent);
+  transition: all 650ms;
+}
+
+.shine:hover::before {
+  left: 100%;
+}
+
+.navbar {
+  position: relative;
+  cursor: pointer;
+}
+
+.navbar::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 3px;
+  background: #f0f0f0;
+  transition: 0.3s;
+  left: 50%;
+  bottom: -10px;
+}
+
+.navbar:hover {
+  transform: scale(1.1);
+  text-decoration: none;
+}
+
+.navbar:hover::after {
+  width: 100%;
+  left: 0;
+  right: 0;
+  transform: translateX(0);
 }
