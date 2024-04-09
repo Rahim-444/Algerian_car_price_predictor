@@ -19,8 +19,7 @@ const Hero = () => {
             the best accuracy!
           </p>
           <button
-            // bg-gradient-to-r from-[#902BAD] to-[#3F78E1]
-            className=" text-white px-10 w-44 py-3 mt-20
+            className=" text-white px-10 w-44 py-3 mt-12
             rounded-lg font-semibold shine bg-gradient-to-r from-[#902BAD] to-[#3F78E1]"
           >
             Get Started
@@ -29,18 +28,17 @@ const Hero = () => {
         <img
           src={illustration}
           alt="illustration"
-          className="absolute right-0 top-0 animate-appearance-in z-1"
+          className="absolute right-0 top-0 animate-appearance-in z-1 w-3/4"
         />
         <img
           src={dots}
           alt="dots"
-          className="absolute left-3 top-5 animate-pulse"
+          className="absolute left-3 top-5 animate-pulse w-[8%]"
         />
       </div>
     </div>
   );
 };
-
 
 const Navbar = () => {
   return (
@@ -73,6 +71,4 @@ const Navbar = () => {
   );
 };
 
-
 export default Hero;
-
