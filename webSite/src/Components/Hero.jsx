@@ -41,6 +41,7 @@ const Hero = () => {
   );
 };
 
+
 const Navbar = () => {
   return (
     <nav className=" z-10 flex justify-end mr-20 pt-8 animate-appearance-in relative">
@@ -72,4 +73,6 @@ const Navbar = () => {
   );
 };
 
+
 export default Hero;
+
