@@ -5,10 +5,9 @@ import InfoSection from "./Components/InfoSection.jsx";
 const App = () => {
   return (
     <>
-      {/* <Hero /> */}
-      <InfoSection/>
+      <Hero />
+      {/* <InfoSection /> */}
       {/* <Form /> */}
-      
     </>
   );
 };
