@@ -5,7 +5,7 @@ import InfoSection from "./Components/InfoSection.jsx";
 const App = () => {
   return (
     <>
-      <Hero />
+      {/* <Hero /> */}
       <InfoSection />
 
       {/* <InfoSection /> */}
