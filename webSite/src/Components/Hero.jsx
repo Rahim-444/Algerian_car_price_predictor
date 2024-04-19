@@ -9,7 +9,7 @@ const Hero = () => {
       <Svg id="logo" className="absolute right-0 top-0 w-[60%] z-0" />
       <div className="flex">
         <div className="text-white h-screen flex justify-center flex-col ml-28 animate-appearance-in">
-          <h1 className=" h-min font-extrabold text-5xl mt-10">
+          <h1 className="h-min font-extrabold text-5xl mt-10">
             Start your
             <br /> <span className="text-[#6695E6]">estimation</span>
             <br /> journey using AI
@@ -42,7 +42,7 @@ const Hero = () => {
 
 const Navbar = () => {
   return (
-    <nav className=" z-10 flex justify-end mr-20 pt-8 animate-appearance-in relative">
+    <nav className="z-10 flex justify-end mr-20 pt-8 animate-appearance-in relative">
       <div className=" text-white backdrop-blur-sm">
         <ul className="flex gap-24 font-medium">
           <li>

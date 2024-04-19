@@ -30,7 +30,8 @@ function Slider() {
           slideShadows: false,
         }}
         autoplay={{
-          delay: 4000,
+          // delay: 4000,
+          delay: 2500,
           disableOnInteraction: false,
         }}
         pagination={{ el: ".swiper-pagination", clickable: true }}
