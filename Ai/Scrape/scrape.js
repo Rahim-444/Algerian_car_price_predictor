@@ -1,34 +1,9 @@
 const puppeteer = require("puppeteer");
-require("dotenv").config("./.env");
+const fs = require("fs");
 //mongoose
-const mongoose = require("mongoose");
 
-const MONGODB_URI = process.env.MOMONGODB_URI;
-mongoose.connect(MONGODB_URI);
-
-mongoose.connection.on("error", (err) => {
-  console.error("MongoDB connection error:", err);
-});
-
-mongoose.connection.once("open", () => {
-  console.log("MongoDB connected");
-});
-
-const carSchema = new mongoose.Schema({
-  price: String,
-  Marque: String,
-  Modele: String,
-  Annee: String,
-  Energie: String,
-  Boite_de_vitesse: String,
-  Puissance_fiscale: String,
-  Kilometrage: String,
-  Couleur: String,
-  Portes: String,
-  options: [String],
-});
 const urlGeneric = "https://www.ouedkniss.com/automobiles/";
-const pageStop = 1000;
+const pageStop = 1;
 
 const scrapeUntilEnd = async (page) => {
   try {
@@ -99,6 +74,7 @@ async function scrapeUrls(allArticles, browser) {
   }
   return data;
 }
+let carNumber = 0;
 
 async function scrapeArticle(url, page, price) {
   await page.goto(url, { waitUntil: "networkidle0", timeout: 0 });
@@ -153,26 +129,21 @@ async function scrapeArticle(url, page, price) {
     return data;
   });
   data["price"] = price;
-  // write the data to the database
-  const Car = mongoose.model("Car", carSchema);
-  const car = new Car(data);
-  await car.save();
-  console.log(data);
+  // write the data to the file
+  fs.appendFileSync("data.json", JSON.stringify(data) + "\n");
+  console.log("scraped car number : ", ++carNumber);
   return data;
 }
 
 async function main() {
   try {
     // delete all entries in the database before starting
-    const Car = mongoose.model("Car", carSchema);
-    await Car.deleteMany({});
     const browser = await puppeteer.launch({
       defaultViewport: { width: 1280, height: 800 },
     });
     const Articles = await scrape(browser);
     await scrapeUrls(Articles, browser);
     await browser.close();
-    await mongoose.connection.close();
   } catch (error) {
     console.error("Error during main execution:", error);
   }
