@@ -27,14 +27,14 @@ const carSchema = new mongoose.Schema({
   Portes: String,
   options: [String],
 });
-
 const urlGeneric = "https://www.ouedkniss.com/automobiles/";
-const pageStop = 2;
+const pageStop = 1000;
 
 const scrapeUntilEnd = async (page) => {
   try {
     let previousHeight = -1;
-    let pageHeight = await page.evaluate("document.body.scrollHeight");
+    // let pageHeight = await page.evaluate("document.body.scrollHeight");
+    let pageHeight = 10000;
     // eslint-disable-next-line no-constant-condition
     while (true) {
       let newHeight = previousHeight + 1;
@@ -51,23 +51,27 @@ const scrapeUntilEnd = async (page) => {
 
 async function scrape(browser) {
   try {
+    const page = await browser.newPage();
     const allArticles = [];
     for (let i = 1; i <= pageStop; i++) {
       const url = urlGeneric + i + "?hasPrice=true";
-      const page = await browser.newPage();
-      await page.setViewport({ width: 1280, height: 800 });
       await page.goto(url, { waitUntil: "networkidle2", timeout: 0 });
 
       await scrapeUntilEnd(page);
 
-      await page.waitForSelector("div.col-sm-6.col-md-4.col-lg-3.col-12");
+      await page.waitForSelector(
+        "div.v-col-sm-6.v-col-md-4.v-col-lg-3.v-col-12",
+      );
       allArticles[i - 1] = await page.evaluate(() => {
         const articles = document.querySelectorAll(
-          "div.col-sm-6.col-md-4.col-lg-3.col-12",
+          "div.v-col-sm-6.v-col-md-4.v-col-lg-3.v-col-12",
         );
         return Array.from(articles).map((article) => {
           const anchor = article.querySelector("a");
-          const price = article.querySelector(".price")?.innerText.trim();
+          const price = article
+            .querySelector(".price")
+            ?.innerText.trim()
+            .replace(/\n/g, " ");
           const url = anchor ? anchor.href : null;
           return {
             url,
@@ -75,9 +79,9 @@ async function scrape(browser) {
           };
         });
       });
-      await page.close();
+      console.log("getting urls from page : ", i);
     }
-
+    await page.close();
     return allArticles;
   } catch (error) {
     console.error("Error during scraping:", error);
@@ -85,32 +89,32 @@ async function scrape(browser) {
 }
 async function scrapeUrls(allArticles, browser) {
   let data = [];
+  const page = await browser.newPage();
   for (const articles of allArticles) {
     for (const article of articles) {
       if (article.url) {
-        data.push(await scrapeArticle(article.url, browser, article.price));
+        data.push(await scrapeArticle(article.url, page, article.price));
       }
     }
   }
   return data;
 }
 
-async function scrapeArticle(url, browser, price) {
-  const page = await browser.newPage();
-  await page.setViewport({ width: 1280, height: 800 });
-  await page.goto(url, { waitUntil: "networkidle2", timeout: 0 });
+async function scrapeArticle(url, page, price) {
+  await page.goto(url, { waitUntil: "networkidle0", timeout: 0 });
   try {
-    await page.waitForSelector(
-      "div.o-announ-specs.mt-2.elevation-1.v-card.v-sheet",
-    );
+    await page.waitForSelector("div.v-row.v-row--dense");
   } catch (error) {
     console.error("Error while waiting for selector:", error);
     return;
   }
   let data = await page.evaluate(() => {
-    const labels = document.querySelectorAll("div.spec-name.col-sm-3.col-5");
-    const values = document.querySelectorAll("div.col-sm-9.col-7");
-    let options = document.querySelectorAll("span.v-chip__content");
+    const labels = document.querySelectorAll(
+      // "div.v-card.v-theme--dark.v-card--density-default.elevation-1.v-card--variant-elevated.o-announ-specs.mt-2",
+      "div.v-col-sm-3.v-col-5.spec-name",
+    );
+    const values = document.querySelectorAll("div.v-col-sm-9.v-col-7");
+    let options = document.querySelectorAll("div.v-chip__content");
     options = Array.from(options).map((option) => option.innerText);
     options = options.filter((option) => {
       return !(
@@ -124,10 +128,24 @@ async function scrapeArticle(url, browser, price) {
     });
     const data = {};
     for (let i = 0; i < labels.length; i++) {
-      let label = labels[i].innerText.trim();
+      let label;
+      try {
+        label = labels[i].innerText.replace(/\n/g, " ");
+      } catch (error) {
+        console.error("Error while getting label:", error);
+        continue;
+      }
       label = label.replace("é", "e");
       label = label.replace("è", "e");
-      const value = values[i].innerText.trim();
+      label = label.replace("ê", "e");
+      label = label.replace("à", "a");
+      let value;
+      try {
+        value = values[i].innerText.replace(/\n/g, " ");
+      } catch (error) {
+        console.error("Error while getting value:", error);
+        continue;
+      }
       if (label != "Options de voiture" && label != "Numero")
         data[`${label}`] = value;
     }
@@ -135,20 +153,26 @@ async function scrapeArticle(url, browser, price) {
     return data;
   });
   data["price"] = price;
-  await page.close();
-  //write the data to the database
+  // write the data to the database
   const Car = mongoose.model("Car", carSchema);
   const car = new Car(data);
   await car.save();
+  console.log(data);
   return data;
 }
 
 async function main() {
   try {
-    const browser = await puppeteer.launch();
+    // delete all entries in the database before starting
+    const Car = mongoose.model("Car", carSchema);
+    await Car.deleteMany({});
+    const browser = await puppeteer.launch({
+      defaultViewport: { width: 1280, height: 800 },
+    });
     const Articles = await scrape(browser);
     await scrapeUrls(Articles, browser);
     await browser.close();
+    await mongoose.connection.close();
   } catch (error) {
     console.error("Error during main execution:", error);
   }
