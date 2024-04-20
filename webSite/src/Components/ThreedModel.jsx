@@ -102,7 +102,7 @@ const ThreedModel = ({canvasRef}) => {
       if (model) {
        // Adjust the speed of rotation by changing this value
         
-     time += 0.25; // Increase this value to make the animation faster
+     time += 0.2; // Increase this value to make the animation faster
      model.position.y = 0.1 * Math.sin(time) ;
       }
       renderer.render(scene, camera);
