@@ -15,7 +15,7 @@ const ProgressBar = ({step,dataLength}) => {
             value={value}
             color="success"
             // showValueLabel={true}
-            className="max-w-md"
+            className="max-w-md "
         />
     );
 };
