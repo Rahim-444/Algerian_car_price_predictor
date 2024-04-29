@@ -17,6 +17,7 @@
     "gsap-trial": "^3.12.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^5.1.0",
     "swiper": "^11.1.0",
     "three": "^0.162.0"
   },
