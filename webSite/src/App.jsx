@@ -7,7 +7,7 @@ const App = () => {
     <>
       <Hero />
       <InfoSection />
-      {/* <Form /> */}
+      <Form />
     </>
   );
 };

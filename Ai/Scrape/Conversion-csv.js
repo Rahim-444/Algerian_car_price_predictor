@@ -2,7 +2,7 @@ const fs = require("fs");
 const { createObjectCsvWriter } = require("csv-writer");
 
 // Read JSON data from file
-const jsonData = fs.readFileSync("scraped_data.json", "utf8");
+const jsonData = fs.readFileSync("data.json", "utf8");
 const data = JSON.parse(jsonData);
 
 // Check if data is an array and not null or undefined
