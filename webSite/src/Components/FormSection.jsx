@@ -15,7 +15,6 @@ const FormSection = () => {
     setForms([...forms, { id: newFormId, step: 0, data: inputs }]);
     setActiveFormId(newFormId);
   };
-  console.log(forms);
 
   const deleteForm = (id) => {
     setForms(forms.filter((form) => form.id !== id));
@@ -24,15 +23,9 @@ const FormSection = () => {
     }
   };
 
-  //   useEffect(() => {
-  //   if (lastMessageRef.current) {
-  //     lastMessageRef.current.scrollIntoView({ behavior: 'smooth' });
-  //   }
-  // }, [forms]);
-  // assign in to th last message and it will scroll to it
-
   return (
-    <div className="forms-buttons flex flex-wrap md:flex-nowrap ">
+    //FIX: remove the margin bottom after making the fotter
+    <div className="forms-buttons flex flex-wrap md:flex-nowrap mb-10">
       {/* sidebar */}
       <div className="sideBar flex  flex-rows md:flex-col h-20 md:h-[40rem] w-full md:w-80 items-center overflow-y-auto scrollbar-hide md:scrollbar md:scrollbar-thumb-purple-700 scrollbar-track-gray-200 mt-9 ">
         <button
@@ -54,25 +47,38 @@ const FormSection = () => {
         </button>
 
         <div className="separation-line h-[2px] w-48 bg-white"></div>
-
         {forms.map((form) => (
           <div key={form.id}>
-            {/* form buttpn */}
-            <button
-              key={form.id}
-              onClick={() => setActiveFormId(form.id)}
-              className="flex justify-between  items-center px-10 py-2 mt-3 hover:bg-CardBlue focus:bg-CardBlue rounded-lg"
-            >
-              <div className="text-white text-center">Form</div>
-
-              {/* delete button */}
-              <button
-                onClick={() => deleteForm(form.id)}
-                className="flex py-3 px-3 ml-14  mr-0 hover:bg-Purple  rounded-lg trash"
+            {form.id === activeFormId ? (
+              <div
+                key={form.id}
+                onClick={() => setActiveFormId(form.id)}
+                className="flex cursor-pointer  justify-between items-center px-10 py-2 mt-3 bg-CardBlue focus:bg-Purple rounded-lg"
               >
-                <FaTrash className="" />
-              </button>
-            </button>
+                <div className="text-white text-center">Form</div>
+                <button
+                  onClick={() => deleteForm(form.id)}
+                  className="flex cursor-pointer  py-3 px-3 ml-14 mr-0 hover:bg-Purple rounded-lg trash"
+                >
+                  <FaTrash className="" />
+                </button>
+              </div>
+            ) : (
+              <div
+                key={form.id}
+                onClick={() => setActiveFormId(form.id)}
+                className="flex justify-between cursor-pointer shine items-center px-10 py-2 mt-3 focus:bg-Purple rounded-lg"
+              >
+                <div className="text-white text-center">Form</div>
+                {/* delete button */}
+                <button
+                  onClick={() => deleteForm(form.id)}
+                  className="flex py-3 px-3 ml-14 mr-0 hover:bg-Purple rounded-lg trash"
+                >
+                  <FaTrash className="" />
+                </button>
+              </div>
+            )}
           </div>
         ))}
       </div>
