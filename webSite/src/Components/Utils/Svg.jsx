@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 const pathVariants = {
-  hidden: { pathLength: 0.4 },
+  hidden: { pathLength: 0.2 },
   visible: { pathLength: 1 },
 };
 const Svg = (props) => (
@@ -21,7 +21,7 @@ const Svg = (props) => (
           initial="hidden"
           animate="visible"
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }} // Looping configuration
-        // Update next state based on current state
+          // Update next state based on current state
         />
         <motion.path
           id="Vector_2"
@@ -33,7 +33,7 @@ const Svg = (props) => (
           initial="hidden"
           animate="visible"
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }} // Looping configuration
-        // Update next state based on current state
+          // Update next state based on current state
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
