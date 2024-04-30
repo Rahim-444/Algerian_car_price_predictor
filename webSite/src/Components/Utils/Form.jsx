@@ -27,9 +27,10 @@ const Form = ({ formId, form, setForms, step }) => {
 
     setForms((prevForms) =>
       prevForms.map((form) =>
-        form.id === formId ? { ...form, data: newData } : form,
-      ),
+        form.id === formId ? { ...form, data: newData } : form
+      )
     );
+    handleSubmit();
     handleSubmit();
   };
 
@@ -56,11 +57,10 @@ const Form = ({ formId, form, setForms, step }) => {
 
     setForms((prevForms) =>
       prevForms.map((form) =>
-        form.id === formId ? { ...form, data: newData } : form,
-      ),
+        form.id === formId ? { ...form, data: newData } : form
+      )
     );
   };
-  /*remove it if it exists and add it to the array if not  */
 
   const handleSubmit = (e) => {
     e && e.type === "submit" ? e.preventDefault() : null;
@@ -68,15 +68,14 @@ const Form = ({ formId, form, setForms, step }) => {
     if (form[step].answer != null && form[step].answer != "") {
       setForms((prevForms) =>
         prevForms.map((form) =>
-          form.id === formId ? { ...form, step: newStep } : form,
-        ),
+          form.id === formId ? { ...form, step: newStep } : form
+        )
       );
     }
   };
 
   const handleNext = () => {
     const newStep = step + 1;
-    // e.preventDefault();
     if (
       step != form.length - 1 &&
       form[step].answer != null &&
@@ -84,8 +83,8 @@ const Form = ({ formId, form, setForms, step }) => {
     ) {
       setForms((prevForms) =>
         prevForms.map((form) =>
-          form.id === formId ? { ...form, step: newStep } : form,
-        ),
+          form.id === formId ? { ...form, step: newStep } : form
+        )
       );
     }
   };
@@ -95,8 +94,8 @@ const Form = ({ formId, form, setForms, step }) => {
     if (step != 0) {
       setForms((prevForms) =>
         prevForms.map((form) =>
-          form.id === formId ? { ...form, step: newStep } : form,
-        ),
+          form.id === formId ? { ...form, step: newStep } : form
+        )
       );
     }
   };
@@ -134,7 +133,6 @@ const Form = ({ formId, form, setForms, step }) => {
   return (
     <>
       <div className="">
-        {/* <h1 className="text-white py-3 px-7 mt-1 bg-primary rounded-tl-full rounded-br-full rounded-tr-full justify-self-start">hiiii</h1> */}
         <div className="chat flex flex-col h-[36rem] flex-grow-0 overflow-y-auto scrollbar-hide p-14">
           <div className="answer-question ">
             {form.slice(0, step + 1).map((step, index) => (
@@ -162,43 +160,57 @@ const Form = ({ formId, form, setForms, step }) => {
                     key={index}
                     onClick={() => handleOptionClick(option)}
                     type="submit"
-                    className="bg-Purple text-white py-3 px-6  rounded-lg m-2 mb-28"
+                    className=" font-medium text-white py-3 px-6  rounded-lg m-2 mb-28 bg-[#902BAD] "
+                    // style={
+                    //   index % 2 === 0
+                    //     ? { borderColor: "#902BAD" }
+                    //     : { borderColor: "#fff" }
+                    // }
                   >
                     {option}
                   </button>
                 ))
               ) : form[step] && form[step].type === "multi" ? (
-                form[step].options.map((option, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center text-center mt-2"
-                  >
-                    <input
-                      ref={lastMessageRef}
-                      type="checkbox"
-                      checked={form[step].answer.includes(option)}
-                      onChange={() => handleOptionClick(option)}
-                      className="appearance-none bg-white border border-gray-300 checked:bg-blue-600 checked:border-transparent focus:outline-none h-6 w-6 rounded ml-4"
-                      style={
-                        index === form[step].options.length
-                          ? { marginBottom: "7rem" }
-                          : {}
-                      }
-                      onKeyUp={(e) => {
-                        if (
-                          e.key === "Enter" &&
-                          form[step].answer != null &&
-                          form[step].answer != ""
-                        ) {
-                          handleSubmit(e);
-                        }
-                      }}
-                    />
-                    <label className="text-white ml-4 h-full font-medium">
-                      {option}
-                    </label>
-                  </div>
-                ))
+                form[step].options.map((option, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className="flex items-center text-center mt-2"
+                    >
+                      <input
+                        ref={lastMessageRef}
+                        type="checkbox"
+                        checked={form[step].answer.includes(option)}
+                        //NOTE: i have the do the checked thingy because
+                        //tailwind doesn't load classes until you call them
+                        //for some reason
+                        className={`appearance-none bg-white border border-gray-300  checked:border-transparent focus:outline-none h-6 w-6 rounded ml-4`}
+                        onChange={() => handleOptionClick(option)}
+                        style={{
+                          backgroundColor: form[step].answer.includes(option)
+                            ? index % 2 === 0
+                              ? "#902BAD"
+                              : "#3F78E1"
+                            : "#fff",
+                          marginBottom:
+                            index === form[step].options.length ? "7rem" : "",
+                        }}
+                        onKeyUp={(e) => {
+                          if (
+                            e.key === "Enter" &&
+                            form[step].answer != null &&
+                            form[step].answer != ""
+                          ) {
+                            handleSubmit(e);
+                          }
+                        }}
+                      />
+                      <label className="text-white ml-4 h-full font-medium">
+                        {option}
+                      </label>
+                    </div>
+                  );
+                })
               ) : form.length - 1 === step ? (
                 <button
                   onClick={handlePredict}

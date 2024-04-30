@@ -14,8 +14,14 @@ const ProgressBar = ({ step, dataLength }) => {
             aria-label="progress"
             size="md"
             value={value}
-            color="secondary"
-            className="max-w-md "
+            classNames={{
+                base: "max-w-md",
+                track: "drop-shadow-md",
+                indicator: "bg-gradient-to-r from-[#902BAD] to-[#3F78E1]",
+                label: "tracking-wider font-medium text-default-600",
+                value: "text-foreground/60",
+            }}
+            className="max-w-md"
         />
     );
 };
