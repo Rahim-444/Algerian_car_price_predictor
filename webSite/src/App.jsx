@@ -1,4 +1,5 @@
-import Form from "./Components/Form.jsx";
+import FormSection from "./Components/FormSection.jsx";
+import Fotter from "./Components/Fotter.jsx";
 import Hero from "./Components/Hero.jsx";
 import InfoSection from "./Components/InfoSection.jsx";
 
@@ -7,7 +8,8 @@ const App = () => {
     <>
       <Hero />
       <InfoSection />
-      {/* <Form /> */}
+      <FormSection />
+      <Fotter />
     </>
   );
 };

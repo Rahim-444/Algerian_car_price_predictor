@@ -144,6 +144,30 @@ swiper-container::part(bullet-active) {
   animation: bounce 2.5s ease-in-out infinite;
 }
 
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #2b2f33;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6c6e71;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.trash svg {
+  color: white;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 @keyframes bounce {
 
   0%,
@@ -156,4 +180,28 @@ swiper-container::part(bullet-active) {
     transform: none;
     animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
   }
+}
+
+/* chat bubble appearence in the chat section */
+@keyframes chatIn {
+  0% {
+    opacity: 0;
+    transform: translateZ(0) scale(0.7) translateY(200px);
+  }
+
+  60% {
+    opacity: 0.75;
+    backface-visibility: hidden;
+    webkit-font-smoothing: antialiased;
+    transform: translateZ(0) scale(1.05);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateZ(0) scale(1) translateY(0);
+  }
+}
+
+.animateChat {
+  animation: chatIn 400ms ease-out normal both;
 }
