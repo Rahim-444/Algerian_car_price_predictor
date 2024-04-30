@@ -27,9 +27,10 @@ const Form = ({ formId, form, setForms, step }) => {
 
     setForms((prevForms) =>
       prevForms.map((form) =>
-        form.id === formId ? { ...form, data: newData } : form,
-      ),
+        form.id === formId ? { ...form, data: newData } : form
+      )
     );
+    handleSubmit();
     handleSubmit();
   };
 
@@ -56,8 +57,8 @@ const Form = ({ formId, form, setForms, step }) => {
 
     setForms((prevForms) =>
       prevForms.map((form) =>
-        form.id === formId ? { ...form, data: newData } : form,
-      ),
+        form.id === formId ? { ...form, data: newData } : form
+      )
     );
   };
 
@@ -67,8 +68,8 @@ const Form = ({ formId, form, setForms, step }) => {
     if (form[step].answer != null && form[step].answer != "") {
       setForms((prevForms) =>
         prevForms.map((form) =>
-          form.id === formId ? { ...form, step: newStep } : form,
-        ),
+          form.id === formId ? { ...form, step: newStep } : form
+        )
       );
     }
   };
@@ -82,8 +83,8 @@ const Form = ({ formId, form, setForms, step }) => {
     ) {
       setForms((prevForms) =>
         prevForms.map((form) =>
-          form.id === formId ? { ...form, step: newStep } : form,
-        ),
+          form.id === formId ? { ...form, step: newStep } : form
+        )
       );
     }
   };
@@ -93,8 +94,8 @@ const Form = ({ formId, form, setForms, step }) => {
     if (step != 0) {
       setForms((prevForms) =>
         prevForms.map((form) =>
-          form.id === formId ? { ...form, step: newStep } : form,
-        ),
+          form.id === formId ? { ...form, step: newStep } : form
+        )
       );
     }
   };
@@ -160,11 +161,11 @@ const Form = ({ formId, form, setForms, step }) => {
                     onClick={() => handleOptionClick(option)}
                     type="submit"
                     className=" font-medium text-white py-3 px-6  rounded-lg m-2 mb-28 bg-[#902BAD] "
-                  // style={
-                  //   index % 2 === 0
-                  //     ? { borderColor: "#902BAD" }
-                  //     : { borderColor: "#fff" }
-                  // }
+                    // style={
+                    //   index % 2 === 0
+                    //     ? { borderColor: "#902BAD" }
+                    //     : { borderColor: "#fff" }
+                    // }
                   >
                     {option}
                   </button>
