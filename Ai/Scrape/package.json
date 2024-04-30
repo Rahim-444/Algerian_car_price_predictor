@@ -16,7 +16,7 @@
     "dotenv": "^16.4.5",
     "mongodb": "^6.5.0",
     "mongoose": "^8.2.3",
-    "puppeteer": "^22.4.1"
+    "puppeteer": "^22.6.5"
   },
   "devDependencies": {
     "eslint": "^8.57.0"
