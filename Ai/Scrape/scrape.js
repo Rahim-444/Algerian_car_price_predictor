@@ -3,7 +3,7 @@ const fs = require("fs");
 //mongoose
 
 const urlGeneric = "https://www.ouedkniss.com/automobiles/";
-const pageStop = 1;
+const pageStop = 100;
 
 const scrapeUntilEnd = async (page) => {
   try {
@@ -130,7 +130,7 @@ async function scrapeArticle(url, page, price) {
   });
   data["price"] = price;
   // write the data to the file
-  fs.appendFileSync("data.json", JSON.stringify(data) + "\n");
+  fs.appendFileSync("data2.json", JSON.stringify(data) + "\n");
   console.log("scraped car number : ", ++carNumber);
   return data;
 }
