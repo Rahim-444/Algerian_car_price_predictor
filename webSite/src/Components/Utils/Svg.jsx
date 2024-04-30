@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 const pathVariants = {
-  hidden: { pathLength: 0.4 },
+  hidden: { pathLength: 0.2 },
   visible: { pathLength: 1 },
 };
 const Svg = (props) => (
@@ -21,9 +21,7 @@ const Svg = (props) => (
           initial="hidden"
           animate="visible"
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }} // Looping configuration
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          } // Update next state based on current state
+          // Update next state based on current state
         />
         <motion.path
           id="Vector_2"
@@ -35,15 +33,10 @@ const Svg = (props) => (
           initial="hidden"
           animate="visible"
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }} // Looping configuration
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          } // Update next state based on current state
+          // Update next state based on current state
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           id="Vector_3"
           opacity={0.16}
           d="M191.888 -44.2048L280.659 48.822"
@@ -55,9 +48,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           id="Vector_4"
           opacity={0.21}
           d="M371.801 -41.8836L280.659 48.822"
@@ -69,9 +59,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           id="Vector_5"
           opacity={0.26}
           d="M371.801 -41.8836L460.573 51.1432"
@@ -83,9 +70,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           id="Vector_6"
           opacity={0.32}
           d="M461.758 -40.723L550.529 52.3038"
@@ -97,9 +81,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           id="Vector_7"
           opacity={0.37}
           d="M641.671 -38.4018L550.529 52.3038"
@@ -111,9 +92,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           id="Vector_8"
           opacity={0.42}
           d="M641.671 -38.4018L730.443 54.625"
@@ -125,9 +103,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           id="Vector_9"
           opacity={0.48}
           d="M731.628 -37.2412L820.399 55.7856"
@@ -139,9 +114,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           id="Vector_10"
           opacity={0.53}
           d="M821.585 -36.0806L910.356 56.9462"
@@ -153,9 +125,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           id="Vector_11"
           opacity={0.58}
           d="M1001.5 -33.7594L910.356 56.9462"
@@ -167,9 +136,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           id="Vector_12"
           opacity={0.64}
           d="M1091.45 -32.5988L1000.31 58.1068"
@@ -181,9 +147,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           id="Vector_13"
           opacity={0.69}
           d="M1091.45 -32.5988L1180.23 60.428"
@@ -195,9 +158,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           id="Vector_14"
           opacity={0.05}
           d="M100.746 46.5008L9.60416 137.206"
@@ -209,9 +169,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           id="Vector_15"
           opacity={0.1}
           d="M190.703 47.6615L99.5608 138.367"
@@ -223,9 +180,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           id="Vector_16"
           opacity={0.16}
           d="M190.703 47.6614L279.474 140.688"
@@ -237,9 +191,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           id="Vector_17"
           opacity={0.21}
           d="M370.616 49.9826L279.474 140.688"
@@ -256,9 +207,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 1,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           id="Vector_18"
           opacity={0.26}
           d="M370.616 49.9826L459.387 143.009"
@@ -275,9 +223,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 1,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           id="Vector_19"
           opacity={0.32}
           variants={pathVariants}
@@ -294,9 +239,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 1,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           id="Vector_20"
           opacity={0.37}
           d="M550.529 52.3038L639.301 145.331"
@@ -313,9 +255,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 1,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           id="Vector_21"
           opacity={0.42}
           d="M730.443 54.625L639.301 145.331"
@@ -332,9 +271,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 1,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           id="Vector_22"
           opacity={0.48}
           d="M820.399 55.7856L729.257 146.491"
@@ -351,9 +287,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 1,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           id="Vector_23"
           opacity={0.53}
           d="M820.399 55.7856L909.171 148.812"
@@ -370,9 +303,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 1,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           id="Vector_24"
           opacity={0.58}
           d="M910.356 56.9462L999.127 149.973"
@@ -389,9 +319,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 1,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           id="Vector_25"
           opacity={0.64}
           d="M1000.31 58.1068L1089.08 151.134"
@@ -408,9 +335,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 1,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           id="Vector_26"
           opacity={0.69}
           d="M1090.27 59.2674L1179.04 152.294"
@@ -427,9 +351,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 1,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           id="Vector_27"
           opacity={0.05}
           d="M99.5608 138.367L8.41892 229.073"
@@ -446,9 +367,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 1,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           id="Vector_28"
           opacity={0.1}
           d="M189.517 139.528L98.3756 230.233"
@@ -465,9 +383,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 1,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           id="Vector_29"
           opacity={0.16}
           d="M189.517 139.528L278.289 232.554"
@@ -484,9 +399,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 2,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           id="Vector_30"
           opacity={0.21}
           d="M369.431 141.849L278.289 232.554"
@@ -503,9 +415,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 2,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           id="Vector_31"
           opacity={0.26}
           d="M369.431 141.849L458.202 234.876"
@@ -522,9 +431,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 2,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           id="Vector_32"
           opacity={0.32}
           d="M549.344 144.17L458.202 234.876"
@@ -541,9 +447,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 2,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           id="Vector_33"
           opacity={0.37}
           d="M639.301 145.331L548.159 236.036"
@@ -560,9 +463,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 2,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_34"
           opacity={0.42}
@@ -579,9 +479,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 2,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_35"
           opacity={0.48}
@@ -598,9 +495,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 2,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_36"
           opacity={0.53}
@@ -617,9 +511,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 2,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_37"
           opacity={0.58}
@@ -636,9 +527,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 2,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_38"
           opacity={0.64}
@@ -655,9 +543,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 2,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_39"
           opacity={0.69}
@@ -674,9 +559,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 2,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_40"
           opacity={0.05}
@@ -693,9 +575,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 2,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_41"
           opacity={0.1}
@@ -712,9 +591,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 2,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_42"
           opacity={0.16}
@@ -731,9 +607,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 2,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_43"
           opacity={0.21}
@@ -750,9 +623,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 2,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_44"
           opacity={0.26}
@@ -764,9 +634,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_45"
           opacity={0.32}
@@ -778,9 +645,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_46"
           opacity={0.37}
@@ -792,9 +656,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_47"
           opacity={0.42}
@@ -806,9 +667,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_48"
           opacity={0.48}
@@ -820,9 +678,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_49"
           opacity={0.53}
@@ -834,9 +689,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_50"
           opacity={0.58}
@@ -848,9 +700,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_51"
           opacity={0.64}
@@ -862,9 +711,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_52"
           opacity={0.69}
@@ -876,9 +722,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_53"
           opacity={0.05}
@@ -890,9 +733,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_54"
           opacity={0.1}
@@ -904,9 +744,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_55"
           opacity={0.16}
@@ -918,9 +755,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_56"
           opacity={0.21}
@@ -932,9 +766,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_57"
           opacity={0.26}
@@ -946,9 +777,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_58"
           opacity={0.32}
@@ -960,9 +788,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_59"
           opacity={0.37}
@@ -974,9 +799,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_60"
           opacity={0.42}
@@ -988,9 +810,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_61"
           opacity={0.48}
@@ -1002,9 +821,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_62"
           opacity={0.53}
@@ -1016,9 +832,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_63"
           opacity={0.58}
@@ -1030,9 +843,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_64"
           opacity={0.64}
@@ -1044,9 +854,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_65"
           opacity={0.69}
@@ -1058,9 +865,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_66"
           opacity={0.05}
@@ -1072,9 +876,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_67"
           opacity={0.1}
@@ -1086,9 +887,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_68"
           opacity={0.16}
@@ -1100,9 +898,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_69"
           opacity={0.21}
@@ -1114,9 +909,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_70"
           opacity={0.26}
@@ -1128,9 +920,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_71"
           opacity={0.32}
@@ -1142,9 +931,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_72"
           opacity={0.37}
@@ -1156,9 +942,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_73"
           opacity={0.42}
@@ -1170,9 +953,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_74"
           opacity={0.48}
@@ -1184,9 +964,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_75"
           opacity={0.53}
@@ -1198,9 +975,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_76"
           opacity={0.58}
@@ -1212,9 +986,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_77"
           opacity={0.64}
@@ -1226,9 +997,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_78"
           opacity={0.69}
@@ -1240,9 +1008,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_79"
           opacity={0.05}
@@ -1254,9 +1019,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_80"
           opacity={0.1}
@@ -1268,9 +1030,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_81"
           opacity={0.16}
@@ -1282,9 +1041,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_82"
           opacity={0.21}
@@ -1296,9 +1052,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_83"
           opacity={0.26}
@@ -1310,9 +1063,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_84"
           opacity={0.32}
@@ -1324,9 +1074,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_85"
           opacity={0.37}
@@ -1338,9 +1085,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_86"
           opacity={0.42}
@@ -1352,9 +1096,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_87"
           opacity={0.48}
@@ -1366,9 +1107,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_88"
           opacity={0.53}
@@ -1380,9 +1118,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_89"
           opacity={0.58}
@@ -1394,9 +1129,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_90"
           opacity={0.64}
@@ -1408,9 +1140,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_91"
           opacity={0.69}
@@ -1422,9 +1151,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_92"
           opacity={0.05}
@@ -1436,9 +1162,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_93"
           opacity={0.1}
@@ -1450,9 +1173,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_94"
           opacity={0.16}
@@ -1464,9 +1184,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_95"
           opacity={0.21}
@@ -1478,9 +1195,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_96"
           opacity={0.26}
@@ -1492,9 +1206,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_97"
           opacity={0.32}
@@ -1506,9 +1217,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_98"
           opacity={0.37}
@@ -1520,9 +1228,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_99"
           opacity={0.42}
@@ -1534,9 +1239,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_100"
           opacity={0.48}
@@ -1548,9 +1250,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_101"
           opacity={0.53}
@@ -1562,9 +1261,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_102"
           opacity={0.58}
@@ -1576,9 +1272,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_103"
           opacity={0.64}
@@ -1590,9 +1283,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_104"
           opacity={0.69}
@@ -1604,9 +1294,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_105"
           opacity={0.05}
@@ -1618,9 +1305,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_106"
           opacity={0.1}
@@ -1632,9 +1316,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_107"
           opacity={0.16}
@@ -1646,9 +1327,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_108"
           opacity={0.21}
@@ -1660,9 +1338,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_109"
           opacity={0.26}
@@ -1674,9 +1349,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_110"
           opacity={0.32}
@@ -1688,9 +1360,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_111"
           opacity={0.37}
@@ -1702,9 +1371,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_112"
           opacity={0.42}
@@ -1716,9 +1382,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_113"
           opacity={0.48}
@@ -1730,9 +1393,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_114"
           opacity={0.53}
@@ -1744,9 +1404,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_115"
           opacity={0.58}
@@ -1758,9 +1415,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_116"
           opacity={0.64}
@@ -1772,9 +1426,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_117"
           opacity={0.69}
@@ -1786,9 +1437,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_118"
           opacity={0.05}
@@ -1800,9 +1448,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_119"
           opacity={0.1}
@@ -1814,9 +1459,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_120"
           opacity={0.16}
@@ -1829,9 +1471,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_121"
           opacity={0.21}
@@ -1844,9 +1483,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_122"
           opacity={0.26}
@@ -1859,9 +1495,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_123"
           opacity={0.32}
@@ -1874,9 +1507,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_124"
           initial="hidden"
@@ -1889,9 +1519,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           initial="hidden"
           animate="visible"
@@ -1904,9 +1531,6 @@ const Svg = (props) => (
         />
         <motion.path
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4 }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_126"
           opacity={0.48}
@@ -1924,9 +1548,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 4,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_127"
           opacity={0.53}
@@ -1944,9 +1565,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 4,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_128"
           opacity={0.58}
@@ -1964,9 +1582,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 4,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_129"
           opacity={0.64}
@@ -1984,9 +1599,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 4,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_130"
           opacity={0.69}
@@ -2004,9 +1616,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 4,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_131"
           opacity={0.05}
@@ -2023,9 +1632,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 4,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_132"
           opacity={0.1}
@@ -2042,9 +1648,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 4,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_133"
           opacity={0.16}
@@ -2061,9 +1664,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 4,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_134"
           opacity={0.21}
@@ -2080,9 +1680,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 4,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_135"
           opacity={0.26}
@@ -2099,9 +1696,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 4,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_136"
           opacity={0.32}
@@ -2118,9 +1712,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 4,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_137"
           opacity={0.37}
@@ -2137,9 +1728,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 4,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_138"
           opacity={0.42}
@@ -2156,9 +1744,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 4,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_139"
           opacity={0.48}
@@ -2175,9 +1760,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 4,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_140"
           opacity={0.53}
@@ -2194,9 +1776,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 4,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_141"
           opacity={0.58}
@@ -2213,9 +1792,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 4,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_142"
           opacity={0.64}
@@ -2232,9 +1808,6 @@ const Svg = (props) => (
             duration: 4,
             delay: 4,
           }}
-          onRepeat={(endState) =>
-            endState === "visible" ? "hidden" : "visible"
-          }
           variants={pathVariants}
           id="Vector_143"
           opacity={0.69}
