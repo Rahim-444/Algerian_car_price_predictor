@@ -13,7 +13,7 @@ export const inputs = [
     type: "multi",
     title: "pices",
     question: "type de pieces?",
-    options: ["amortiseur ", "pneaus ", "rotroviseur", "join de culase"],
+    options: ["amortiseur ", "pneau ", "rotroviseur ", "join de culase "],
     answer: [],
   },
 
@@ -68,5 +68,6 @@ export const inputs = [
     id: 8,
     type: "text",
     text: "thanks for participating!",
+    answer: "",
   },
 ];
