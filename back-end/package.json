@@ -1,0 +1,18 @@
+{
+  "name": "pfe",
+  "version": "1.0.0",
+  "description": "This project aims to predict the prices of cars using machine learning (ML) and deep learning (DL) techniques. The project utilizes a dataset containing features of various cars such as make, model, year, mileage, and other relevant attributes. We have implemented both traditional ML models and DL models to predict car prices",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js "
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.3.5"
+  }
+}
