@@ -6,7 +6,7 @@
   font-family: "Montserrat", sans-serif;
   color-scheme: dark;
   font-synthesis: none;
-  background-color: #03092d;
+  background-color: #030014;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -76,7 +76,8 @@ swiper-container::part(bullet-active) {
   content: "";
 }
 
-.swiper-pagination {}
+.swiper-pagination {
+}
 
 .swiper-pagination .swiper-pagination-bullet {
   filter: drop-shadow(0px 8px 24px rgba(18, 28, 53, 0.1));
@@ -169,7 +170,6 @@ swiper-container::part(bullet-active) {
 }
 
 @keyframes bounce {
-
   0%,
   100% {
     transform: translateY(-9%);

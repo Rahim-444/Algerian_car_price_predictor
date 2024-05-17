@@ -3,7 +3,7 @@ export const inputs = [
   {
     id: 0,
     type: "choice",
-    title: "pices",
+    title: "pieces",
     question: "type de pieces?",
     options: ["amortiseur ", "pneaus ", "rotroviseur"],
     answer: "",
@@ -11,9 +11,9 @@ export const inputs = [
   {
     id: 1,
     type: "multi",
-    title: "pices",
+    title: "pieces2",
     question: "type de pieces?",
-    options: ["amortiseur ", "pneau ", "rotroviseur ", "join de culase "],
+    options: ["amortiseur ", "pneaus ", "rotroviseur", "join de culase"],
     answer: [],
   },
 
@@ -68,6 +68,5 @@ export const inputs = [
     id: 8,
     type: "text",
     text: "thanks for participating!",
-    answer: "",
   },
 ];

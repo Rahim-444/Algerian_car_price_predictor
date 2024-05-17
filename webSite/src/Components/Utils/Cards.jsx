@@ -4,13 +4,13 @@ import Svg from "./Svg.jsx";
 const Cards = () => {
     // const canvasRef = React.useRef(null);
     return (
-        <div className="flex justify-center items-center m-0">
+        <div className="flex justify-center items-center m-0 ">
             <div
-                className="gradiantBackground w-2/3 h-96  p-1 bg-gradient-to-r from-Purple to-Blue rounded-3xl 
+                className="gradiantBackground w-2/3 h-56 border-2 border-white  border-opacity-15  p-1 rounded-3xl 
                 relative overflow-hidden shadow-2xl"
             >
                 <div
-                    className="innerBackground bg-background w-[100%] h-[100%] rounded-3xl
+                    className="innerBackground bg-transparent w-[100%] h-[100%] rounded-3xl
                     flex justify-center items-center flex-col"
                 >
                     <div className="content  ">
