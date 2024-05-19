@@ -50,6 +50,7 @@ class CarData(BaseModel):
 
 @app.post("/feedback")
 async def create_feedback(feedback: Feedback):
+    
     feedback_dict = feedback.dict()
     feedback_dict["createdAt"] = datetime.utcnow()
 
