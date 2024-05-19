@@ -1,14 +1,13 @@
 const puppeteer = require("puppeteer");
 const fs = require("fs");
-//mongoose
+const category = "automobiles";
 
-const urlGeneric = "https://www.ouedkniss.com/automobiles/";
-const pageStop = 100;
+const urlGeneric = "https://www.ouedkniss.com/" + category + "/";
+const maxPageNumber = 100;
 
 const scrapeUntilEnd = async (page) => {
   try {
     let previousHeight = -1;
-    // let pageHeight = await page.evaluate("document.body.scrollHeight");
     let pageHeight = 10000;
     // eslint-disable-next-line no-constant-condition
     while (true) {
@@ -28,7 +27,7 @@ async function scrape(browser) {
   try {
     const page = await browser.newPage();
     const allArticles = [];
-    for (let i = 1; i <= pageStop; i++) {
+    for (let i = 1; i <= maxPageNumber; i++) {
       const url = urlGeneric + i + "?hasPrice=true";
       await page.goto(url, { waitUntil: "networkidle2", timeout: 0 });
 
@@ -137,9 +136,11 @@ async function scrapeArticle(url, page, price) {
 
 async function main() {
   try {
-    // delete all entries in the database before starting
+    //NOTE: keep the browser in this size to avoid ads ;) trick that works in
+    //ouedkniss
     const browser = await puppeteer.launch({
       defaultViewport: { width: 1280, height: 800 },
+      // headless: false,
     });
     const Articles = await scrape(browser);
     await scrapeUrls(Articles, browser);

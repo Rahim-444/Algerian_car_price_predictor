@@ -185,23 +185,32 @@ swiper-container::part(bullet-active) {
 /* chat bubble appearence in the chat section */
 @keyframes chatIn {
   0% {
-    opacity: 0;
-    transform: translateZ(0) scale(0.7) translateY(200px);
-  }
-
-  60% {
-    opacity: 0.75;
-    backface-visibility: hidden;
-    webkit-font-smoothing: antialiased;
-    transform: translateZ(0) scale(1.05);
+    opacity: 0.7;
+    transform: scale(0) translateX(-200px);
   }
 
   100% {
     opacity: 1;
-    transform: translateZ(0) scale(1) translateY(0);
+    transform: scale(1) translateX(0);
   }
 }
 
 .animateChat {
-  animation: chatIn 400ms ease-out normal both;
+  animation: chatIn 400ms ease-in forwards;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animateSlideInLeft {
+  animation: slideInFromLeft 0.5s ease-in-out forwards;
 }

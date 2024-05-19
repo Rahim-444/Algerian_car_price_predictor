@@ -1,13 +1,45 @@
-import { useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import WebGL from "three/addons/capabilities/WebGL.js";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 import PropTypes from "prop-types";
+import useIntersectionObserver from "./useIntersectionObserver";
 
 const ThreedModel = ({ canvasRef }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const elementRef = useRef(null);
+
+  const handleIntersection = (entry) => {
+    if (entry.isIntersecting) {
+      setIsLoaded(true);
+    } else {
+      setIsLoaded(false);
+    }
+  };
+
+  const { observe, unobserve } = useIntersectionObserver(handleIntersection, {
+    root: null,
+    rootMargin: "600px",
+    threshold: 1,
+  });
+
   useEffect(() => {
+    const element = elementRef.current;
+    if (element) {
+      observe(element);
+    }
+    return () => {
+      if (element) {
+        unobserve(element);
+      }
+    };
+  }, [observe, unobserve]);
+
+  useEffect(() => {
+    if (!isLoaded) return;
+
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
       100,
@@ -17,18 +49,18 @@ const ThreedModel = ({ canvasRef }) => {
     );
     const renderer = new THREE.WebGLRenderer({ canvas: canvasRef.current });
 
-    //renderers configuration
+    // Renderer configuration
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setClearColor(0x000000, 0);
     renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.sortObjects = false; // Disable depth sorting (might be necessary for specific cases)
+    renderer.sortObjects = false;
 
-    // Create a DRACOLoader instance to decode draco files.
+    // Create a DRACOLoader instance to decode Draco files
     const dracoLoader = new DRACOLoader();
-    dracoLoader.setDecoderPath("node_modules/three/examples/js/libs/draco"); // replace with the path to your draco decoder files
+    dracoLoader.setDecoderPath("node_modules/three/examples/js/libs/draco");
 
-    // Create a GLTFLoader instance.
-    var loader = new GLTFLoader();
+    // Create a GLTFLoader instance
+    const loader = new GLTFLoader();
     loader.setDRACOLoader(dracoLoader);
 
     let model;
@@ -41,14 +73,9 @@ const ThreedModel = ({ canvasRef }) => {
         model.rotation.x = 0;
         model.scale.set(1.4, 1.2, 1.4);
 
-        //set the model position to the center of the scene
-        // Compute the bounding box of the model
+        // Center the model
         const box = new THREE.Box3().setFromObject(model);
-
-        // Get the center of the bounding box
         const center = box.getCenter(new THREE.Vector3());
-
-        // Move the model's geometry so that its center is at the origin
         model.position.sub(center);
 
         scene.add(model);
@@ -60,65 +87,48 @@ const ThreedModel = ({ canvasRef }) => {
     );
     renderer.shadowMap.enabled = true;
 
-    // Enable shadows for the object
-    // NOTE:removed psk 9rib t7r9lna l pc
-    // if (model) {
-    //   model.traverse(function(node) {
-    //     if (node instanceof THREE.Mesh) {
-    //       node.castShadow = true; // default is false
-    //       node.receiveShadow = true; // default is false
-    //     }
-    //   });
-    // }
-
-    //adding orbit controls
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableZoom = false;
-    controls.minPolarAngle = Math.PI / 2; // Restrict vertical rotation
+    controls.minPolarAngle = Math.PI / 2;
     controls.maxPolarAngle = Math.PI / 2;
     controls.update();
 
-    // Enable shadows for the light source
-    // const light2 = new THREE.SpotLight(0x902BAD, 1);
-    // light2.position.set(4, 0, 3);
-    // light2.castShadow = true; // default is false
-
     const light = new THREE.AmbientLight(0xffffff, 3);
     light.position.set(0, 0, 0);
-
     scene.add(light);
-    //  scene.add(light2)
 
-    // Set camera position
     camera.position.z = 3.2;
 
     let time = 0;
     const animate = () => {
-      // model.rotation.y = scrollY; // Update model rotation based on scroll
       if (model) {
-        // Adjust the speed of rotation by changing this value
-
-        time += 0.15; // Increase this value to make the animation faster
+        time += 0.15;
         model.position.y = 0.1 * Math.sin(time);
       }
       renderer.render(scene, camera);
       requestAnimationFrame(animate);
-      // controls.update();
     };
 
     if (WebGL.isWebGLAvailable()) {
-      // Initiate function or other initializations here
       animate();
     } else {
       const warning = WebGL.getWebGLErrorMessage();
       console.log(warning);
     }
-  }, [canvasRef]);
+
+    return () => {
+      renderer.dispose();
+      if (model) {
+        scene.remove(model);
+      }
+    };
+  }, [isLoaded, canvasRef]);
+
   return (
-    <div>
+    <div ref={elementRef}>
       <canvas
         ref={canvasRef}
-        className="absolute bottom-14 left-[-30rem] z-10 cursor-grab"
+        className="absolute bottom-14 left-[-30rem] z-10 cursor-grab animateSlideInLeft"
       />
     </div>
   );
