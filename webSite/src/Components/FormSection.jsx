@@ -2,6 +2,7 @@ import { useState } from "react";
 import Form from "./Utils/Form.jsx";
 import { inputs } from "../Components/Utils/ChatData.js";
 import { FaTrash } from "react-icons/fa";
+import BotThreedModel from "./Utils/BotThreedModel.jsx";
 
 const FormSection = () => {
   const [forms, setForms] = useState([
@@ -83,7 +84,9 @@ const FormSection = () => {
         ))}
       </div>
 
-      <div className="Forms  w-screen h-[40rem]  border-white  border-2 rounded-lg mt-9 mr-5">
+      {/* the form  */}
+      <div className="Forms  w-screen h-[40rem]  border-white  border-2 rounded-lg mt-9 mr-5 relative">
+        <BotThreedModel /> 
         {forms.map((form) => (
           <div key={form.id} className=" ">
             {activeFormId === form.id && (
@@ -96,6 +99,7 @@ const FormSection = () => {
             )}
           </div>
         ))}
+         
       </div>
     </div>
   );
