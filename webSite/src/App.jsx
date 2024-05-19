@@ -7,11 +7,11 @@ import ThreedModel from "./Components/Utils/ThreedModel.jsx";
 import BotThreedModel from "./Components/Utils/BotThreedModel.jsx";
 import React from "react";
 const App = () => {
-   const canvasRef = React.useRef(null);
+  
   return (
     <>
     <div className="relative">
-     <BotThreedModel canvasRef={canvasRef}/>
+     <BotThreedModel />
     </div>
     </>
   );
