@@ -1,6 +1,7 @@
 import dots from "../assets/dots.svg";
 import illustration from "../assets/hero-illustration.svg";
 import Svg from "./Utils/Svg";
+import SeeMagic from "./../assets/seemagic.svg";
 
 const Hero = () => {
     return (
@@ -8,22 +9,30 @@ const Hero = () => {
             <Navbar />
             <Svg id="logo" className="absolute right-0 top-0 w-[60%] z-0" />
             <div className="flex">
-                <div className="text-white h-screen flex justify-center flex-col ml-28 animate-appearance-in">
-                    <h1 className="h-min font-extrabold text-5xl mt-10">
-                        Start your
-                        <br /> <span className="text-[#6695E6]">estimation</span>
-                        <br /> journey using AI
+                <div className=" z-10 text-white h-screen flex justify-center flex-col ml-28 animate-appearance-in">
+                    <h1 className="h-min font-bold text-4xl mt-10">
+                        one click and all 
+                        <br /> the market in your <span className="text-[#2CFFCC]">Hand</span>
                     </h1>
-                    <p className=" mt-5 w-[63%] text-justify">
+
+                    <button
+                        className=" text-white flex items-center gap-4 pt-5"
+                    >
+                       <img src={SeeMagic} alt="see magic" />
+                       <div className="text-xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-[#FC72FF] via-[#8F68FF]  via-[#487BFF] via-[#2CD9FF] to-[#2CFFCC]">Click to see magic</div>
+                    </button>
+
+                    {/* <p className=" mt-5 w-[63%] text-justify">
                         We provide the best AI tools to help you estimate your project with
                         the best accuracy!
-                    </p>
-                    <button
+                    </p> */}
+                    {/* <button
                         className=" text-white px-10 w-44 py-3 mt-12
                         rounded-lg font-semibold shine bg-gradient-to-r from-[#902BAD] to-[#3F78E1]"
                     >
                         Get Started
-                    </button>
+                    </button> */}
+
                 </div>
                 <img
                     src={illustration}

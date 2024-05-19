@@ -24,12 +24,12 @@ const FormSection = () => {
   };
 
   return (
-    //FIX: remove the margin bottom after making the fotter
-    <div className="forms-buttons flex flex-wrap md:flex-nowrap mb-10">
+    
+    <div className="forms-buttons flex flex-wrap md:flex-nowrap mb-10 mt-36">
       {/* sidebar */}
       <div className="sideBar flex  flex-rows md:flex-col h-20 md:h-[40rem] w-full md:w-80 items-center overflow-y-auto scrollbar-hide md:scrollbar md:scrollbar-thumb-purple-700 scrollbar-track-gray-200 mt-9 ">
         <button
-          className="text-white px-6 py-4 md:px-24 md:py-4 flex-shrink-0 rounded-lg border-none  mb-3  bg-gradient-to-r from-Purple to-Blue  hover:border-none"
+          className="text-white px-6 py-4 md:px-24 md:py-4 flex-shrink-0 rounded-lg border-none  mb-3  bg-gradient-to-r from-[#FC72FF] via-[#8F68FF]  via-[#487BFF] via-[#2CD9FF] to-[#2CFFCC] hover:border-none"
           onClick={addForm}
         >
           <svg
