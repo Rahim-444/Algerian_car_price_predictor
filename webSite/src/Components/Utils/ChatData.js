@@ -1,8 +1,72 @@
 // an object to be imported  , it has type (answer or question) and text (the content of the message)
-let inputs =
-[
-   
+export const inputs = [
+  {
+    id: 0,
+    type: "choice",
+    title: "pieces",
+    question: "type de pieces?",
+    options: ["amortiseur ", "pneaus ", "rotroviseur"],
+    answer: "",
+  },
+  {
+    id: 1,
+    type: "multi",
+    title: "pieces2",
+    question: "type de pieces?",
+    options: ["amortiseur ", "pneaus ", "rotroviseur", "join de culase"],
+    answer: [],
+  },
 
-]
-
-export default inputs;
+  {
+    id: 2,
+    type: "text",
+    title: "model",
+    question: "What is your favorite model (text)?",
+    answer: "",
+  },
+  {
+    id: 3,
+    type: "choice",
+    title: "name",
+    question: "what is the name of the car?",
+    options: ["clio3", "porshe", "tiguan"],
+    answer: "",
+  },
+  {
+    id: 4,
+    type: "choice",
+    title: "color",
+    question: "What is your favorite color?",
+    options: ["Red", "Blue", "Green"],
+    answer: "",
+  },
+  {
+    id: 5,
+    type: "choice",
+    title: "color2",
+    question: "What is your favorite color?",
+    options: ["Red", "Blue", "Green"],
+    answer: "",
+  },
+  {
+    id: 6,
+    type: "choice",
+    title: "color3",
+    question: "What is your favorite color?",
+    options: ["Red", "Blue", "Green"],
+    answer: "",
+  },
+  {
+    id: 7,
+    type: "choice",
+    title: "color4",
+    question: "What is your favorite color?",
+    options: ["Red", "Blue", "Green"],
+    answer: "",
+  },
+  {
+    id: 8,
+    type: "text",
+    text: "thanks for participating!",
+  },
+];
