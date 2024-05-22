@@ -2,7 +2,6 @@ import { useState, useRef, useEffect } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-import WebGL from "three/addons/capabilities/WebGL.js";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 import PropTypes from "prop-types";
 import { motion, useInView, useAnimate } from "framer-motion";
@@ -33,7 +32,7 @@ const ThreedModel = ({ canvasRef }) => {
         75,
         window.innerWidth / window.innerHeight,
         0.1,
-        1000,
+        1000
       );
       renderer = new THREE.WebGLRenderer({ canvas: canvasRef.current });
 
@@ -65,7 +64,7 @@ const ThreedModel = ({ canvasRef }) => {
         undefined,
         (error) => {
           console.error(error);
-        },
+        }
       );
 
       controls = new OrbitControls(camera, renderer.domElement);

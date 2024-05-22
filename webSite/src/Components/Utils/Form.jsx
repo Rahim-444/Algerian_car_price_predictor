@@ -122,7 +122,6 @@ const Form = ({ formId, form, setForms, step }) => {
       });
     if (form.type === "text") {
       focusRef.current.focus();
-      console.log("hello");
     } else if (form.type === "multi") {
       lastMessageRef.current.focus();
     }
@@ -210,7 +209,7 @@ const Form = ({ formId, form, setForms, step }) => {
                           }
                         }}
                       />
-                      <label className="text-white ml-4 h-full font-medium">
+                      <label className="dark:text-Cream text-background ml-4 h-full font-medium">
                         {option}
                       </label>
                     </div>
@@ -228,7 +227,7 @@ const Form = ({ formId, form, setForms, step }) => {
               ) : form[step].type === "text" ? (
                 <div className="animate-appearance-in mb-28">
                   <input
-                    className="bg-white border-3 border-Blue rounded-full px-5 py-2 mt-2 w-[25rem] "
+                    className="bg-white border-3 border-Blue rounded-full px-5 py-2 mt-2 w-[25rem]  text-black"
                     placeholder="enter your answer here"
                     type="text"
                     value={value || ""}
@@ -248,7 +247,7 @@ const Form = ({ formId, form, setForms, step }) => {
           </div>
         </div>
 
-        <div className="navigation-bar flex gap-5 border-t border-white p-2 ">
+        <div className="navigation-bar flex gap-5 border-t dark:border-Cream border-background p-2 ">
           <div className="flex justify-center items-center w-full">
             <Progress step={step} dataLength={form.length} />
           </div>
