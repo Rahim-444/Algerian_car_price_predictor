@@ -114,11 +114,11 @@ const ThreedModel = ({ canvasRef }) => {
     }
   }, [canvasRef]);
   return (
-    <div>
+    <div className="">
       <canvas
         ref={canvasRef}
         // className="absolute bottom-14 left-[-30rem] z-10 cursor-grab"
-         className="z-10 cursor-grab"
+         className="z-10 cursor-grab w-12 "
       />
     </div>
   );

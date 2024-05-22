@@ -1,3 +1,9 @@
+const defaultTheme = require("tailwindcss/defaultTheme");
+const colors = require("tailwindcss/colors");
+const {
+  default: flattenColorPalette,
+} = require("tailwindcss/lib/util/flattenColorPalette");
+
 /** @type {import('tailwindcss').Config} */
 const { nextui } = require("@nextui-org/react");
 export default {
@@ -15,6 +21,7 @@ export default {
         Purple: "#902BAD",
         Blue: "#3F78E1",
         CardBlue: "#141545",
+        Cream: "#fffef2",
       },
       borderWidth: {
         10: "10px",
@@ -25,5 +32,16 @@ export default {
     },
   },
   darkMode: "class",
-  plugins: [nextui()],
+  plugins: [nextui(), addVariablesForColors],
 };
+
+function addVariablesForColors({ addBase, theme }) {
+  let allColors = flattenColorPalette(theme("colors"));
+  let newVars = Object.fromEntries(
+    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
+  );
+
+  addBase({
+    ":root": newVars,
+  });
+}
