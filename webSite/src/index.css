@@ -6,7 +6,7 @@
   font-family: "Montserrat", sans-serif;
   color-scheme: dark;
   font-synthesis: none;
-  background-color: #03092d;
+  background-color: #030014;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -213,4 +213,36 @@ swiper-container::part(bullet-active) {
 
 .animateSlideInLeft {
   animation: slideInFromLeft 0.5s ease-in-out forwards;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutToLeft {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+.slideInFromLeft {
+  animation: slideInFromLeft 1s forwards;
+}
+
+.slideOutToLeft {
+  animation: slideOutToLeft 1s forwards;
 }

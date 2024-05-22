@@ -1,14 +1,12 @@
-# FROM --platform=linux/amd64 ubuntu:20.04
-FROM node:latest
+FROM nginx:alpine
+ARG VCS_REF
+ARG BUILD_DATE
+ARG MIN_MEM=2G
+ARG MAX_MEM=2G
+LABEL maintainer="Gautham Prakash <github.com/gauthamp10>"
+LABEL org.label-schema.build-date=$BUILD_DATE
+LABEL org.label-schema.vcs-url="https://github.com/gauthamp10/dockerfile-boilerplates"
+LABEL org.label-schema.vcs-ref=$VCS_REF
 
-WORKDIR /app
-
-COPY package*.json ./
-
-RUN npm install
-
-RUN npx puppeteer browsers install chrome
-
-COPY . .
-
-CMD ["node", "scrape.js"]
+COPY /script /usr/share/nginx/html/
+CMD (! pidof nginx) || sudo kill -9 $(pidof nginx)

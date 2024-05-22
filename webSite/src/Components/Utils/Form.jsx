@@ -120,8 +120,6 @@ const Form = ({ formId, form, setForms, step }) => {
         behavior: "smooth",
         inline: "nearest",
       });
-    //FIX: this might break the whole thing so if something goes wrong check
-    //this or remove it all together
     if (form.type === "text") {
       focusRef.current.focus();
       console.log("hello");
@@ -172,11 +170,6 @@ const Form = ({ formId, form, setForms, step }) => {
                     onClick={() => handleOptionClick(option)}
                     type="submit"
                     className=" font-medium text-white py-3 px-6  rounded-lg m-2 mb-28 bg-[#902BAD] "
-                  // style={
-                  //   index % 2 === 0
-                  //     ? { borderColor: "#902BAD" }
-                  //     : { borderColor: "#fff" }
-                  // }
                   >
                     {option}
                   </button>

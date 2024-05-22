@@ -1,34 +1,93 @@
 import dots from "../assets/dots.svg";
-import illustration from "../assets/hero-illustration.svg";
-import Svg from "./Utils/Svg";
+import illustration from "../assets/herosection.svg";
+import SeeMagic from "./../assets/seemagic.svg";
+import { TypewriterEffectSmooth } from "./ui/typewriter-effect";
+import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
+const words = [
+    { text: "one", className: "h-min font-bold text-4xl mt-5 text-white" },
+    { text: "click", className: "h-min font-bold text-4xl mt-5 text-white" },
+    { text: "and", className: "h-min font-bold text-4xl mt-5 text-white" },
+    { text: "all", className: "h-min font-bold text-4xl mt-5 text-white" },
+    { text: "the", className: "h-min font-bold text-4xl mt-5 text-white" },
+];
+const words2 = [
+    { text: "market", className: "h-min font-bold text-4xl  text-white" },
+    { text: "in", className: "h-min font-bold text-4xl  text-white" },
+    { text: "your", className: "h-min font-bold text-4xl text-white" },
+    {
+        text: "Hand",
+        className: "h-min font-bold text-4xl mt-10 text-[#2CFFCC]",
+    },
+];
+const FirstComponent = ({ onLoad }) => {
+    useEffect(() => {
+        const loadComponent = async () => {
+            // Simulate an async operation
+            await new Promise((resolve) => setTimeout(resolve, 2000)); // Adjust time as needed
+            onLoad();
+        };
+
+        loadComponent();
+    }, [onLoad]);
+
+    return (
+        <TypewriterEffectSmooth
+            className="typewriter-container"
+            words={words}
+            cursorClassName="typewriter-cursor"
+            isLast={false}
+        />
+    );
+};
+const SecondComponent = () => {
+    return (
+        <TypewriterEffectSmooth
+            className="typewriter-container absolute down-0 left-0"
+            words={words2}
+            cursorClassName="typewriter-cursor"
+            isLast={true}
+        />
+    );
+};
 
 const Hero = () => {
+    const [firstLoaded, setFirstLoaded] = useState(false);
+
+    const handleFirstLoad = () => {
+        setFirstLoaded(true);
+    };
     return (
         <div id="hero" className="relative">
             <Navbar />
-            <Svg id="logo" className="absolute right-0 top-0 w-[60%] z-0" />
+            {/* <Svg id="logo" className="absolute right-0 top-0 w-[60%] z-0" /> */}
             <div className="flex">
-                <div className="text-white h-screen flex justify-center flex-col ml-28 animate-appearance-in">
-                    <h1 className="h-min font-extrabold text-5xl mt-10">
-                        Start your
-                        <br /> <span className="text-[#6695E6]">estimation</span>
-                        <br /> journey using AI
-                    </h1>
-                    <p className=" mt-5 w-[63%] text-justify">
+                <div className=" z-10 text-white h-screen flex justify-center flex-col ml-28 animate-appearance-in">
+                    <FirstComponent onLoad={handleFirstLoad} />
+                    {firstLoaded && <SecondComponent />}
+                    <button className=" text-white flex items-center gap-4 pt-5 mt-5 ">
+                        <img src={SeeMagic} alt="see magic" />
+                        <div className="text-xl font-semibold bg-clip-text text-transparent bg-gradient-to-r  from-[#FC72FF] via-[#8F68FF]  via-[#487BFF] via-[#2CD9FF] to-[#2CFFCC]">
+                            Click to see magic
+                        </div>
+                    </button>
+                    <div className="bg-ternary blur-[200px] w-80 h-72 absolute top-64 left-[10rem] z-1"></div>
+
+                    {/* <p className=" mt-5 w-[63%] text-justify">
                         We provide the best AI tools to help you estimate your project with
                         the best accuracy!
-                    </p>
-                    <button
+                    </p> */}
+                    {/* <button
                         className=" text-white px-10 w-44 py-3 mt-12
                         rounded-lg font-semibold shine bg-gradient-to-r from-[#902BAD] to-[#3F78E1]"
                     >
                         Get Started
-                    </button>
+                    </button> */}
                 </div>
                 <img
                     src={illustration}
                     alt="illustration"
-                    className="absolute right-0 top-0 animate-appearance-in z-1 w-3/4"
+                    className="absolute right-[10%] top-[25%] animate-appearance-in z-1 w-[40%]"
                 />
                 <img
                     src={dots}
@@ -69,6 +128,10 @@ const Navbar = () => {
             </div>
         </nav>
     );
+};
+
+FirstComponent.propTypes = {
+    onLoad: PropTypes.func.isRequired,
 };
 
 export default Hero;

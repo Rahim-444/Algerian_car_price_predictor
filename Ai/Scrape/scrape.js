@@ -3,7 +3,7 @@ const fs = require("fs");
 const category = "automobiles";
 
 const urlGeneric = "https://www.ouedkniss.com/" + category + "/";
-const maxPageNumber = 100;
+const maxPageNumber = 2;
 
 const scrapeUntilEnd = async (page) => {
   try {
@@ -129,6 +129,7 @@ async function scrapeArticle(url, page, price) {
   });
   data["price"] = price;
   // write the data to the file
+  console.log(data);
   fs.appendFileSync("data2.json", JSON.stringify(data) + "\n");
   console.log("scraped car number : ", ++carNumber);
   return data;
@@ -140,7 +141,7 @@ async function main() {
     //ouedkniss
     const browser = await puppeteer.launch({
       defaultViewport: { width: 1280, height: 800 },
-      // headless: false,
+      headless: false,
     });
     const Articles = await scrape(browser);
     await scrapeUrls(Articles, browser);
