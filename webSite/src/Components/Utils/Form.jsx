@@ -27,8 +27,8 @@ const Form = ({ formId, form, setForms, step }) => {
 
     setForms((prevForms) =>
       prevForms.map((form) =>
-        form.id === formId ? { ...form, data: newData } : form
-      )
+        form.id === formId ? { ...form, data: newData } : form,
+      ),
     );
     handleSubmit();
     handleSubmit();
@@ -57,8 +57,8 @@ const Form = ({ formId, form, setForms, step }) => {
 
     setForms((prevForms) =>
       prevForms.map((form) =>
-        form.id === formId ? { ...form, data: newData } : form
-      )
+        form.id === formId ? { ...form, data: newData } : form,
+      ),
     );
   };
 
@@ -68,8 +68,8 @@ const Form = ({ formId, form, setForms, step }) => {
     if (form[step].answer != null && form[step].answer != "") {
       setForms((prevForms) =>
         prevForms.map((form) =>
-          form.id === formId ? { ...form, step: newStep } : form
-        )
+          form.id === formId ? { ...form, step: newStep } : form,
+        ),
       );
     }
   };
@@ -83,8 +83,8 @@ const Form = ({ formId, form, setForms, step }) => {
     ) {
       setForms((prevForms) =>
         prevForms.map((form) =>
-          form.id === formId ? { ...form, step: newStep } : form
-        )
+          form.id === formId ? { ...form, step: newStep } : form,
+        ),
       );
     }
   };
@@ -94,8 +94,8 @@ const Form = ({ formId, form, setForms, step }) => {
     if (step != 0) {
       setForms((prevForms) =>
         prevForms.map((form) =>
-          form.id === formId ? { ...form, step: newStep } : form
-        )
+          form.id === formId ? { ...form, step: newStep } : form,
+        ),
       );
     }
   };
@@ -120,8 +120,6 @@ const Form = ({ formId, form, setForms, step }) => {
         behavior: "smooth",
         inline: "nearest",
       });
-    //FIX: this might break the whole thing so if something goes wrong check
-    //this or remove it all together
     if (form.type === "text") {
       focusRef.current.focus();
     } else if (form.type === "multi") {
@@ -132,17 +130,28 @@ const Form = ({ formId, form, setForms, step }) => {
   return (
     <>
       <div className="">
-        <div className="chat flex flex-col h-[36rem] flex-grow-0 overflow-y-auto scrollbar-hide p-14">
+        <div
+          className="chat flex flex-col h-[36rem] flex-grow-0
+          overflow-y-auto scrollbar-hide p-14"
+        >
           <div className="answer-question ">
             {form.slice(0, step + 1).map((step, index) => (
               <div key={index} className=" w-full">
                 {/* //question */}
-                <div className="min-w-[20%] max-w-[60%] w-fit text-Cream py-3 animate-appearance-in px-5 mt-6 ml-2 bg-primary font-semibold rounded-br-3xl rounded-tl-3xl rounded-tr-3xl  break-words ">
+                <div
+                  className="min-w-[20%] max-w-[60%] w-fit text-white py-3
+                  animate-appearance-in px-5 mt-6 ml-2 bg-primary font-semibold rounded-br-3xl
+                  rounded-tl-3xl rounded-tr-3xl  break-words "
+                >
                   {step.question ? step.question : step.text}
                 </div>
                 {/* //answer */}
                 {step.answer != "" && (
-                  <div className=" min-w-[20%] animateChat max-w-[60%] dark:text-Cream text-background  w-fit py-3 px-5 mt-2 ml-2 rounded-br-3xl rounded-tr-3xl rounded-bl-3xl animate-appearance-in break-words border-1 ">
+                  <div
+                    className=" min-w-[20%] animateChat max-w-[60%] text-white w-fit py-3 
+                    px-5 mt-2 ml-2 rounded-br-3xl rounded-tr-3xl rounded-bl-3xl 
+                    animate-appearance-in break-words border-1 "
+                  >
                     {step.type === "multi" ? step.answer + " " : step.answer}
                   </div>
                 )}
@@ -159,12 +168,7 @@ const Form = ({ formId, form, setForms, step }) => {
                     key={index}
                     onClick={() => handleOptionClick(option)}
                     type="submit"
-                    className=" font-medium text-Cream  py-3 px-6  rounded-lg m-2 mb-28 bg-[#902BAD] "
-                    // style={
-                    //   index % 2 === 0
-                    //     ? { borderColor: "#902BAD" }
-                    //     : { borderColor: "#fff" }
-                    // }
+                    className=" font-medium text-white py-3 px-6  rounded-lg m-2 mb-28 bg-[#902BAD] "
                   >
                     {option}
                   </button>
@@ -183,7 +187,8 @@ const Form = ({ formId, form, setForms, step }) => {
                         //NOTE: i have the do the checked thingy because
                         //tailwind doesn't load classes until you call them
                         //for some reason
-                        className={`appearance-none dark:bg-Cream bg-background border dark:border-gray-300 border-gray-800  checked:border-transparent focus:outline-none h-6 w-6 rounded ml-4`}
+                        className={`appearance-none bg-white border border-gray-300  checked:border-transparent
+                            focus:outline-none h-6 w-6 rounded ml-4`}
                         onChange={() => handleOptionClick(option)}
                         style={{
                           backgroundColor: form[step].answer.includes(option)
@@ -194,7 +199,7 @@ const Form = ({ formId, form, setForms, step }) => {
                           marginBottom:
                             index === form[step].options.length ? "7rem" : "",
                         }}
-                        onKeyUp={(e) => {
+                        onKeyDown={(e) => {
                           if (
                             e.key === "Enter" &&
                             form[step].answer != null &&
@@ -214,14 +219,15 @@ const Form = ({ formId, form, setForms, step }) => {
                 <button
                   onClick={handlePredict}
                   ref={lastMessageRef}
-                  className="shine w-44 py-3 px-6 mt-4 ml-3 rounded-lg bg-gradient-to-r from-[#902BAD] to-[#3F78E1] text-white font-semibold"
+                  className="shine w-44 py-3 px-6 mt-4 ml-3 rounded-lg bg-gradient-to-r
+                      from-[#902BAD] to-[#3F78E1] text-white font-semibold"
                 >
                   Predict
                 </button>
               ) : form[step].type === "text" ? (
                 <div className="animate-appearance-in mb-28">
                   <input
-                    className="bg-white border-3 border-Blue rounded-full px-5 py-2 mt-2 w-[25rem] "
+                    className="bg-white border-3 border-Blue rounded-full px-5 py-2 mt-2 w-[25rem]  text-black"
                     placeholder="enter your answer here"
                     type="text"
                     value={value || ""}

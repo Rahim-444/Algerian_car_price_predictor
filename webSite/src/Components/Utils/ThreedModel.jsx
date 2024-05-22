@@ -1,131 +1,119 @@
-import { useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-import WebGL from "three/addons/capabilities/WebGL.js";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 import PropTypes from "prop-types";
+import { motion, useInView, useAnimate } from "framer-motion";
 
 const ThreedModel = ({ canvasRef }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const animationRef = useRef();
+  const [scope, animate] = useAnimate();
+  const isInView = useInView(scope);
+
   useEffect(() => {
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(
-      100,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      1000,
-    );
-    const renderer = new THREE.WebGLRenderer({ canvas: canvasRef.current });
-
-    //renderers configuration
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setClearColor(0x000000, 0);
-    renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.sortObjects = false; // Disable depth sorting (might be necessary for specific cases)
-
-    // Create a DRACOLoader instance to decode draco files.
-    const dracoLoader = new DRACOLoader();
-    dracoLoader.setDecoderPath("node_modules/three/examples/js/libs/draco"); // replace with the path to your draco decoder files
-
-    // Create a GLTFLoader instance.
-    var loader = new GLTFLoader();
-    loader.setDRACOLoader(dracoLoader);
-
-    let model;
-    loader.load(
-      "Iphone/Iphone.gltf",
-      function(gltf) {
-        model = gltf.scene;
-        model.position.set(0, 0, 0);
-        model.rotation.y = 2;
-        model.rotation.x = 0;
-        model.scale.set(1.4, 1.2, 1.4);
-
-        //set the model position to the center of the scene
-        // Compute the bounding box of the model
-        const box = new THREE.Box3().setFromObject(model);
-
-        // Get the center of the bounding box
-        const center = box.getCenter(new THREE.Vector3());
-
-        // Move the model's geometry so that its center is at the origin
-        model.position.sub(center);
-
-        scene.add(model);
-      },
-      undefined,
-      function(error) {
-        console.error(error);
-      },
-    );
-    renderer.shadowMap.enabled = true;
-
-    // Enable shadows for the object
-    // NOTE:removed psk 9rib t7r9lna l pc
-    // if (model) {
-    //   model.traverse(function(node) {
-    //     if (node instanceof THREE.Mesh) {
-    //       node.castShadow = true; // default is false
-    //       node.receiveShadow = true; // default is false
-    //     }
-    //   });
-    // }
-
-    //adding orbit controls
-    const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableZoom = false;
-    controls.minPolarAngle = Math.PI / 2; 
-    controls.maxPolarAngle = Math.PI / 2;
-    controls.update();
-
-    // Enable shadows for the light source
-    // const light2 = new THREE.SpotLight(0x902BAD, 1);
-    // light2.position.set(4, 0, 3);
-    // light2.castShadow = true; // default is false
-
-    const light = new THREE.AmbientLight(0xffffff, 3);
-    light.position.set(0, 0, 0);
-
-    scene.add(light);
-    
-    // Set camera position
-    camera.position.z = 3.2;
-
-    let time = 0;
-    const animate = () => {
-      // model.rotation.y = scrollY; // Update model rotation based on scroll
-      if (model) {
-        // Adjust the speed of rotation by changing this value
-
-        time += 0.15; // Increase this value to make the animation faster
-        model.position.y = 0.1 * Math.sin(time);
-      }
-      renderer.render(scene, camera);
-      requestAnimationFrame(animate);
-      // controls.update();
-    };
-
-    if (WebGL.isWebGLAvailable()) {
-      // Initiate function or other initializations here
-      animate();
+    if (isInView) {
+      setIsLoaded(true);
+      animate("canvas", { x: 0 }, { duration: 0.9, ease: "easeOut" });
     } else {
-      const warning = WebGL.getWebGLErrorMessage();
-      console.log(warning);
+      setIsLoaded(false);
+      animate("canvas", { x: "100%" }, { duration: 0.9, ease: "easeOut" });
     }
-  }, [canvasRef]);
+  }, [isInView]);
+
+  useEffect(() => {
+    let scene, camera, renderer, controls, model, light;
+    let time = 0;
+
+    if (isLoaded) {
+      scene = new THREE.Scene();
+      camera = new THREE.PerspectiveCamera(
+        75,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        1000
+      );
+      renderer = new THREE.WebGLRenderer({ canvas: canvasRef.current });
+
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(window.devicePixelRatio);
+      renderer.setClearColor(0x000000, 0);
+      renderer.shadowMap.enabled = true;
+
+      const dracoLoader = new DRACOLoader();
+      dracoLoader.setDecoderPath("node_modules/three/examples/js/libs/draco/");
+
+      const loader = new GLTFLoader();
+      loader.setDRACOLoader(dracoLoader);
+      loader.load(
+        "Iphone/Iphone.gltf",
+        (gltf) => {
+          model = gltf.scene;
+          model.position.set(0, 0, 0);
+          model.rotation.y = 1;
+          model.rotation.x = 0;
+          model.scale.set(1, 0.8, 1);
+
+          const box = new THREE.Box3().setFromObject(model);
+          const center = box.getCenter(new THREE.Vector3());
+          model.position.sub(center);
+
+          scene.add(model);
+        },
+        undefined,
+        (error) => {
+          console.error(error);
+        }
+      );
+
+      controls = new OrbitControls(camera, renderer.domElement);
+      controls.enableZoom = false;
+      controls.minPolarAngle = Math.PI / 2;
+      controls.maxPolarAngle = Math.PI / 2;
+      controls.update();
+
+      light = new THREE.AmbientLight(0xffffff, 3);
+      scene.add(light);
+
+      camera.position.z = 3.2;
+
+      const animateModel = () => {
+        if (model) {
+          time += 0.15;
+          model.position.y = 0.1 * Math.sin(time);
+        }
+        renderer.render(scene, camera);
+        animationRef.current = requestAnimationFrame(animateModel);
+      };
+
+      animateModel();
+    }
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+      if (renderer) renderer.dispose();
+      if (model) scene.remove(model);
+    };
+  }, [isLoaded, canvasRef]);
+
   return (
-    <div className="">
-      <canvas
-        ref={canvasRef}
-        // className="absolute bottom-14 left-[-30rem] z-10 cursor-grab"
-         className="z-10 cursor-grab w-12 "
-      />
-    </div>
+    <motion.div
+      ref={scope}
+      initial={{ x: "100%" }}
+      animate={{ x: -400 }}
+      transition={{ duration: 1, ease: "easeOut" }}
+      className="z-10 cursor-grab w-[50%]"
+    >
+      <canvas ref={canvasRef} />
+    </motion.div>
   );
 };
 
 ThreedModel.propTypes = {
-  canvasRef: PropTypes.object,
+  canvasRef: PropTypes.object.isRequired,
 };
 
 export default ThreedModel;

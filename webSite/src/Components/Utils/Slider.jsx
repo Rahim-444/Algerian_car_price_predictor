@@ -10,10 +10,12 @@ import {
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
+import { useRef } from "react";
 
 function Slider() {
+  const swiperRef = useRef(null);
   return (
-    <div className="container w-screen">
+    <div ref={swiperRef} className="container w-screen">
       <Swiper
         effect={"coverflow"}
         grabCursor={true}
@@ -29,8 +31,7 @@ function Slider() {
           slideShadows: false,
         }}
         autoplay={{
-          // delay: 4000,
-          delay: 3000,
+          delay: 4000,
           disableOnInteraction: false,
         }}
         pagination={{ el: ".swiper-pagination", clickable: true }}
@@ -40,16 +41,28 @@ function Slider() {
           clickable: true,
         }}
         modules={[Autoplay, EffectCoverflow, Pagination, Navigation]}
-        className="swiper_container"
+        className="swiper_container slideInFromLeft"
       >
         <SwiperSlide>
-          <Cards />
+          <Cards
+            text={
+              "Our project implements advanced artificial intelligence techniques by integrating the benefits of XGBoost algorithms."
+            }
+          />
         </SwiperSlide>
         <SwiperSlide>
-          <Cards />
+          <Cards
+            text={
+              "We plan to introduce advanced features such as result personalization, market trend visualization, and the integration of personalized advice."
+            }
+          />
         </SwiperSlide>
         <SwiperSlide>
-          <Cards />
+          <Cards
+            text={
+              "Our solution will continue to evolve to meet the changing needs of the automotive market and provide an increasingly enriched and personalized user experience."
+            }
+          />
         </SwiperSlide>
 
         <div className="slider-controler mt-14 ">

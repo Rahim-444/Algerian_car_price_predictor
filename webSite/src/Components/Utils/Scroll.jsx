@@ -1,13 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
-import {
-  motion,
-  useTransform,
-  useScroll,
-  useSpring,
-} from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import PropsTypes from "prop-types";
+import { motion, useTransform, useScroll, useSpring } from "framer-motion";
 import { cn } from "./cn";
 
-const Scroll = ({children,className}) => {
+const Scroll = ({ children, className }) => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -24,7 +20,7 @@ const Scroll = ({children,className}) => {
   }, []);
 
   const y1 = useSpring(
-    useTransform(scrollYProgress, [0, 0.8], [50, svgHeight]),
+    useTransform(scrollYProgress, [0, 0.6], [50, svgHeight]),
     {
       stiffness: 500,
       damping: 90,
@@ -43,7 +39,7 @@ const Scroll = ({children,className}) => {
       ref={ref}
       className={cn("relative w-full  mx-auto h-full", className)}
     >
-      <div className="absolute   md:left-14 top-3">
+      <div className="absolute   md:right-14 top-24">
         <motion.div
           transition={{
             duration: 0.1,
@@ -118,6 +114,11 @@ const Scroll = ({children,className}) => {
       <div ref={contentRef}>{children}</div>
     </motion.div>
   );
+};
+
+Scroll.propTypes = {
+  children: PropsTypes.node.isRequired,
+  className: PropsTypes.string,
 };
 
 export default Scroll;
