@@ -4,7 +4,7 @@ import SeeMagic from "./../assets/seemagic.svg";
 import { TypewriterEffectSmooth } from "./ui/typewriter-effect";
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import DarkModeButton from "./Utils/DarkModeButton.jsx";
+import { Link as ScrollLink } from "react-scroll";
 
 const words = [
   { text: "one", className: "h-min font-bold text-4xl mt-5 text-white" },
@@ -15,10 +15,11 @@ const words = [
 ];
 const words2 = [
   { text: "market", className: "h-min font-bold text-4xl  text-white" },
+  { text: "is", className: "h-min font-bold text-4xl  text-white" },
   { text: "in", className: "h-min font-bold text-4xl  text-white" },
   { text: "your", className: "h-min font-bold text-4xl text-white" },
   {
-    text: "Hand",
+    text: "Hands",
     className: "h-min font-bold text-4xl mt-10 text-[#2CFFCC]",
   },
 ];
@@ -53,7 +54,7 @@ const SecondComponent = () => {
   );
 };
 
-const Hero = ({ isDarkmode, setIsDarkmode }) => {
+const Hero = () => {
   const [firstLoaded, setFirstLoaded] = useState(false);
 
   const handleFirstLoad = () => {
@@ -61,18 +62,26 @@ const Hero = ({ isDarkmode, setIsDarkmode }) => {
   };
   return (
     <div id="hero" className="relative">
-      <Navbar isDarkmode={isDarkmode} setIsDarkmode={setIsDarkmode} />
+      <Navbar />
       {/* <Svg id="logo" className="absolute right-0 top-0 w-[60%] z-0" /> */}
       <div className="flex">
-        <div className=" z-10 dark:text-Cream  text-background  h-screen flex justify-center flex-col ml-28 animate-appearance-in">
+        <div className=" z-10 text-white   h-screen flex justify-center flex-col ml-28 animate-appearance-in">
           <FirstComponent onLoad={handleFirstLoad} />
           {firstLoaded && <SecondComponent />}
-          <button className=" text-white flex items-center gap-4 pt-5 mt-5 ">
-            <img src={SeeMagic} alt="see magic" />
-            <div className="text-xl font-semibold bg-clip-text text-transparent bg-gradient-to-r  from-[#FC72FF] via-[#8F68FF]  via-[#487BFF] via-[#2CD9FF] to-[#2CFFCC]">
-              Click to see magic
-            </div>
-          </button>
+          <ScrollLink
+            to="fotter"
+            spy={true}
+            smooth={true}
+            offset={0}
+            duration={500}
+          >
+            <button className=" text-white flex items-center gap-4 pt-5 mt-5 ">
+              <img src={SeeMagic} alt="see magic" />
+              <div className="text-xl font-semibold bg-clip-text text-transparent bg-gradient-to-r  from-[#FC72FF] via-[#8F68FF]  via-[#487BFF] via-[#2CD9FF] to-[#2CFFCC]">
+                Click to see magic
+              </div>
+            </button>
+          </ScrollLink>
           <div className="bg-ternary blur-[200px] w-80 h-72 absolute top-64 left-[10rem] z-1"></div>
 
           {/* <p className=" mt-5 w-[63%] text-justify">
@@ -101,10 +110,10 @@ const Hero = ({ isDarkmode, setIsDarkmode }) => {
   );
 };
 
-const Navbar = ({ isDarkmode, setIsDarkmode }) => {
+const Navbar = () => {
   return (
     <nav className="z-10 flex justify-end mr-20 pt-8 animate-appearance-in relative">
-      <div className=" dark:text-white text-background  backdrop-blur-sm">
+      <div className="  text-white  backdrop-blur-sm">
         <ul className="flex gap-24 font-medium">
           <li>
             <a className="navbar" href="#">
@@ -117,9 +126,16 @@ const Navbar = ({ isDarkmode, setIsDarkmode }) => {
             </a>
           </li>
           <li>
-            <a className="navbar" href="#">
+            <ScrollLink
+              to="about"
+              spy={true}
+              smooth={true}
+              offset={0}
+              duration={500}
+              className="cursor-pointer navbar"
+            >
               ABOUT US
-            </a>
+            </ScrollLink>
           </li>
           <li>
             <a className="navbar" href="#">
@@ -140,16 +156,6 @@ const Navbar = ({ isDarkmode, setIsDarkmode }) => {
 
 FirstComponent.propTypes = {
   onLoad: PropTypes.func.isRequired,
-};
-
-Hero.propTypes = {
-  isDarkmode: PropTypes.bool.isRequired,
-  setIsDarkmode: PropTypes.func.isRequired,
-};
-
-Navbar.propTypes = {
-  isDarkmode: PropTypes.bool.isRequired,
-  setIsDarkmode: PropTypes.func.isRequired,
 };
 
 export default Hero;
