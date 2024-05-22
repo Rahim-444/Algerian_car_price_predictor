@@ -67,6 +67,7 @@ export const inputs = [
     title: "modifed",
     question: "Est-ce que la voiture a été modifiée ?",
     options: ["oui", "non"],
+    answer: "",
   },
   {
     id: 9,

@@ -1,6 +1,9 @@
 const Fotter = () => {
   return (
-    <div className="flex justify-center items-center w-full text-[#f1f1f1] font-bold mb-5">
+    <div
+      id="fotter"
+      className="flex justify-center items-center w-full text-[#f1f1f1] font-bold mb-5"
+    >
       made with ❤️ by the bestest team © 2024
     </div>
   );

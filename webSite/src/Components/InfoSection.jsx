@@ -5,8 +5,11 @@ import Slider from "./Utils/Slider.jsx";
 const InfoSection = () => {
   // const canvasRef = useRef(null);
   return (
-    <div className="Info-section h-screen flex flex-col gap-20 justify-center items-center animate-appearance-in">
-      <h1 className="text-5xl dark:text-Cream  text-background text-center font-bold">
+    <div
+      id="about"
+      className="Info-section h-screen flex flex-col gap-20 justify-center items-center animate-appearance-in"
+    >
+      <h1 className="text-5xl   text-white text-center font-bold">
         Discover our Services
       </h1>
       <div className="bg-Purple blur-[130px] w-40 h-48 absolute right-0 bottom-12 z-1"></div>
