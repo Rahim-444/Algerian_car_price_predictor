@@ -2,19 +2,22 @@ import dots from "../assets/dots.svg";
 import illustration from "../assets/hero-illustration.svg";
 import Svg from "./Utils/Svg";
 import SeeMagic from "./../assets/seemagic.svg";
+import DarkModeButton from "./Utils/DarkModeButton.jsx";
 
-const Hero = () => {
+
+const Hero = ({isDarkmode , setIsDarkmode}) => {
+    
     return (
-        <div id="hero" className="relative">
-            <Navbar />
-            <Svg id="logo" className="absolute right-0 top-0 w-[60%] z-0" />
+        <div id="hero" className="relative " >
+            <Navbar isDarkmode={isDarkmode} setIsDarkmode={setIsDarkmode}  />
+            <Svg id="logo" className="absolute right-0 top-0 w-[60%] z-0 " />
             <div className="flex">
-                <div className=" z-10 text-white h-screen flex justify-center flex-col ml-28 animate-appearance-in">
-                    <h1 className="h-min font-bold text-4xl mt-10">
+                <div className=" z-10 dark:text-white  text-background h-screen flex justify-center flex-col ml-28 animate-appearance-in">
+                    <h1 className="h-min font-bold text-4xl mt-7">
                         one click and all 
                         <br /> the market in your <span className="text-[#2CFFCC]">Hand</span>
                     </h1>
-
+                    
                     <button
                         className=" text-white flex items-center gap-4 pt-5"
                     >
@@ -49,10 +52,11 @@ const Hero = () => {
     );
 };
 
-const Navbar = () => {
+const Navbar = ({isDarkmode , setIsDarkmode}) => {
+   
     return (
         <nav className="z-10 flex justify-end mr-20 pt-8 animate-appearance-in relative">
-            <div className=" text-white backdrop-blur-sm">
+            <div className=" dark:text-white text-background  backdrop-blur-sm">
                 <ul className="flex gap-24 font-medium">
                     <li>
                         <a className="navbar" href="#">
@@ -74,6 +78,10 @@ const Navbar = () => {
                             CONTACT US
                         </a>
                     </li>
+                    <li>
+                        <DarkModeButton isDarkmode={isDarkmode} setIsDarkmode={setIsDarkmode} />
+                    </li>
+                    
                 </ul>
             </div>
         </nav>
