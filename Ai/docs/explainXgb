@@ -1,0 +1,19 @@
+# Car Price Prediction Using XGBoost
+
+## Introduction
+We implemented an XGBoost regression model to predict car prices. The model was trained and evaluated using cross-validation to ensure its robustness and accuracy.
+
+## Model Configuration
+
+### 1. Model Initialization
+We initialized the XGBoost model with the following parameters:
+
+- `tree_method="hist"`: This specifies the histogram-based algorithm. The histogram algorithm is efficient for large datasets as it reduces the computation time by grouping continuous features into discrete bins.
+- `n_estimators=1000`: This sets the number of boosting rounds to 1000. Boosting is an iterative process where the model learns from previous errors, and more rounds can improve model performance.
+
+```python
+import xgboost as xgb
+
+model = xgb.XGBRegressor(tree_method="hist", n_estimators=1000)
+```
+
