@@ -8,18 +8,20 @@ import ProtoTypes from "prop-types";
 //we map over the object and return a div with the text and the type of the message , and render with the condition (ternary operators)
 
 const Form = ({ formId, form, setForms, step }) => {
+
+  // console.log(form);
   const lastMessageRef = useRef(null);
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState({});
   const focusRef = useRef(null);
 
-  const handleAnswerChange = (value) => {
-    setValue(value);
-  };
+  const handleAnswerChange = (stepIndex, value) => {
+  setValue(prevValue => ({ ...prevValue, [stepIndex]: value }));
+};
 
   const textAreaHanler = (stepIndex) => {
     const newData = form.map((item) => {
       if (item.id === stepIndex) {
-        return { ...item, answer: value };
+        return { ...item, answer: value[stepIndex] || '' };
       } else {
         return item;
       }
@@ -31,7 +33,7 @@ const Form = ({ formId, form, setForms, step }) => {
       ),
     );
     handleSubmit();
-    handleSubmit();
+    // handleSubmit();
   };
 
   const handleOptionClick = (option) => {
@@ -65,29 +67,36 @@ const Form = ({ formId, form, setForms, step }) => {
   const handleSubmit = (e) => {
     e && e.type === "submit" ? e.preventDefault() : null;
     const newStep = step + 1;
-    if (form[step].answer != null && form[step].answer != "") {
+    if (form[step]?.answer != null && form[step]?.answer != "") {
       setForms((prevForms) =>
         prevForms.map((form) =>
           form.id === formId ? { ...form, step: newStep } : form,
         ),
       );
     }
+    // if (e.type === "submit" && form[step].type === "text") {
+    //   setValue(form[step].answer);
+    // }
+    
   };
 
-  const handleNext = () => {
+ const handleNext = () => {
     const newStep = step + 1;
+   console.log(step)
     if (
-      step != form.length - 1 &&
+      step -1 != form.length &&
       form[step].answer != null &&
       form[step].answer != ""
     ) {
-      setForms((prevForms) =>
+       setForms((prevForms) =>
         prevForms.map((form) =>
           form.id === formId ? { ...form, step: newStep } : form,
         ),
       );
     }
+    
   };
+
   const handleDecrement = (e) => {
     const newStep = step - 1;
     e.preventDefault();
@@ -98,22 +107,61 @@ const Form = ({ formId, form, setForms, step }) => {
         ),
       );
     }
+    
   };
 
+  // const handlePredict = () => {
+  //   try {
+  //     const result = form.reduce((acc, item) => {
+  //       item.title && (acc[item.title] = item.answer);
+  //       return acc;
+  //     }, {});
+  //     console.log(result);
+
+  //     const response = axios.post("http://localhost:5000/predict", result);
+  //     console.log(response);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
   const handlePredict = () => {
-    try {
-      const result = form.reduce((acc, item) => {
-        item.title && (acc[item.title] = item.answer);
-        return acc;
-      }, {});
-      console.log(result);
+  try {
+    let result = form.reduce((acc, item) => {
+      item.title &&  item.title != "options" && (acc[item.title] = item.answer);
+      return acc;
+    }, {});
 
-      const response = axios.post("http://localhost:5000/predict", result);
-      console.log(response);
-    } catch (error) {
-      console.error(error);
+    
+    if (result.notRepairedDamage === "oui") {
+      result.notRepairedDamage = "nein";
+    } else if (result.notRepairedDamage === "non") {
+      result.notRepairedDamage = "ja";
+    }   
+    //NOTE: if abtest
+    // if (result.abtest === "yes") {
+    //   result.abtest = "control";
+    // } else if (result.abtest === "no") {
+    //   result.abtest = "test";
+    // }
+    if (result.modified === "oui") {
+      result.modified = "nein";
+    } else if (result.modified === "non") {
+      result.modified = "ja";
     }
-  };
+     
+    if (result.fuelType === "essence") {
+      result.fuelType = "benzin";
+    }
+    
+    
+
+    const response = axios.post("http://localhost:5000/predict", result);
+    console.log(response);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
   useEffect(() => {
     if (lastMessageRef.current)
       lastMessageRef.current.scrollIntoView({
@@ -129,6 +177,8 @@ const Form = ({ formId, form, setForms, step }) => {
       lastMessageRef.current.focus();
     }
   }, [form]);
+
+  console.log(form);
 
   return (
     <>
@@ -211,7 +261,15 @@ const Form = ({ formId, form, setForms, step }) => {
                     </div>
                   );
                 })
-              ) : form.length - 1 === step ? (
+              ) : form.length === step ? (
+                <div className="predict">
+                  <div
+                  className="min-w-[20%] max-w-[60%] w-fit text-white py-3
+                  animate-appearance-in px-5 mt-6 ml-2 bg-primary font-semibold rounded-br-3xl
+                  rounded-tl-3xl rounded-tr-3xl  break-words "
+                >
+                  thanks for your information , click the button below to predict
+                </div>
                 <button
                   onClick={handlePredict}
                   ref={lastMessageRef}
@@ -219,14 +277,17 @@ const Form = ({ formId, form, setForms, step }) => {
                 >
                   Predict
                 </button>
+
+                </div>
+                 
               ) : form[step].type === "text" ? (
                 <div className="animate-appearance-in mb-28">
                   <input
                     className="bg-white border-3 border-Blue rounded-full px-5 py-2 mt-2 w-[25rem] "
                     placeholder="enter your answer here"
                     type="text"
-                    value={value || ""}
-                    onChange={(e) => handleAnswerChange(e.target.value)}
+                    value={value[step] || ""}
+                    onChange={(e) => handleAnswerChange(step,e.target.value)}
                     ref={focusRef}
                   />
                   <br />
