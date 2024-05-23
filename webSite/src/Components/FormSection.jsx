@@ -49,14 +49,14 @@ const FormSection = () => {
           </svg>
         </button>
 
-        <div className="separation-line h-[2px] w-48  bg-background"></div>
+        {/* <div className="separation-line h-[2px] w-48  bg-background"></div> */}
         {forms.map((form) => (
           <div key={form.id}>
             {form.id === activeFormId ? (
               <div
                 key={form.id}
                 onClick={() => setActiveFormId(form.id)}
-                className="flex cursor-pointer  justify-between items-center px-10 py-2 mt-3 bg-CardBlue focus:bg-Purple rounded-lg z-10"
+                className="flex cursor-pointer  justify-between items-center px-10 py-2 md:mt-3 bg-CardBlue focus:bg-Purple rounded-lg z-10"
               >
                 <div className="text-Cream text-center">Form</div>
                 <button
@@ -70,7 +70,7 @@ const FormSection = () => {
               <div
                 key={form.id}
                 onClick={() => setActiveFormId(form.id)}
-                className="flex justify-between cursor-pointer shine items-center px-10 py-2 mt-3 focus:bg-Purple rounded-lg z-10"
+                className="flex justify-between cursor-pointer shine items-center px-10 py-2 md:mt-3 focus:bg-Purple rounded-lg z-10"
               >
                 <div className="dark:text-Cream text-background text-center">Form</div>
                 {/* delete button */}

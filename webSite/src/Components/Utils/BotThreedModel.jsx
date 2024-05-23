@@ -5,7 +5,7 @@ import Bot from "../../../public/Bot";
 
 const BotThreedModel = () => {
   return (
-    <div className="absolute w-1/2  right-[-4rem]  hover:cursor-grab ">
+    <div className="absolute w-1/3 right-0  md:right-[-4rem]  hover:cursor-grab ">
       <Canvas style={{ marginTop: "50px", height: "240px" }}>
         <Suspense fallback={<Html>Loading...</Html>}>
           <PerspectiveCamera makeDefault position={[2, 6, 2]} />

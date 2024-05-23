@@ -44,7 +44,7 @@ export const inputs = [
     type: "choice",
     title: "fuelType",
     question: "Quel est le type de carburant du véhicule ?",
-    options: ["essence", "diesel", "gaz", "hybride", "electrique"],
+    options: ["essence", "diesel"],
     answer: "",
   },
   {
@@ -64,9 +64,10 @@ export const inputs = [
   {
     id: 8,
     type: "choice",
-    title: "modifed",
+    title: "modified",
     question: "Est-ce que la voiture a été modifiée ?",
     options: ["oui", "non"],
+    answer: "",
   },
   {
     id: 9,
@@ -90,4 +91,10 @@ export const inputs = [
     ],
     answer: [],
   },
+  // {
+  //   id: 10,
+  //   type: "",
+  //   title: "predict",
+  //   question: "thank you for you prediction",
+  // },
 ];
