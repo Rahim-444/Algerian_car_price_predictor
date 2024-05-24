@@ -47,7 +47,7 @@ The project is organized into the following directories:
 
 3. **Web Application**:
 
-   - Navigate to the `src/frontend/` directory.
+   - Navigate to the `PFE/Website` directory.
    - Run `npm install` to install frontend dependencies.
    - Start the Next.js development server with `npm run dev`.
 
@@ -57,8 +57,17 @@ The project is organized into the following directories:
 
 ## Contributors
 
-- Dana Amine (@DanaAmine): Data Scientist, ML model development
-- Rahim (@Rahim444): Full-Stack Developer, Web application implementation
+- Dana Amine (@DanaAmine): Data Scientist and ML/Dl model development , 
+
+- Belkacemi Abderrahim (@Rahim444): Full-Stack Developer, Web application front end implementation and web scraping 
+
+- Mama Maroua (@romy-ma): backend developer ,web application backend implementation 
+
+- Hermez Abderrahim (@Hermez-anderrahim): Full-stack Developer , web application Frontend implementation and UI/UX design 
+
+- Imane Belbachir (@imane-belbachir) : Front end Developer and UI/UX designer ,  front end implementation and UI/UX design 
+
+- Graba chakib (@Chakibceran22): backend developer and 3D designer , backend implementaion and 3d models design   
 
 ## License
 
