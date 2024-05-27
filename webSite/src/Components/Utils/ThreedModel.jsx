@@ -5,12 +5,14 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 import PropTypes from "prop-types";
 import { motion, useInView, useAnimate } from "framer-motion";
+import { useMediaQuery } from 'react-responsive';
 
 const ThreedModel = ({ canvasRef }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const animationRef = useRef();
   const [scope, animate] = useAnimate();
   const isInView = useInView(scope);
+  const isSmallScreen = useMediaQuery({ query: '(max-width: 768px)' });
 
   useEffect(() => {
     if (isInView) {
@@ -103,7 +105,7 @@ const ThreedModel = ({ canvasRef }) => {
     <motion.div
       ref={scope}
       initial={{ x: "100%" }}
-      animate={{ x: -400 }}
+      animate={{x: isSmallScreen ? 0 : -400 }}
       transition={{ duration: 1, ease: "easeOut" }}
       className="z-10 cursor-grab w-[50%]"
     >

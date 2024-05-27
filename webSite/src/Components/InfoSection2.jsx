@@ -15,11 +15,11 @@ const InfoSection2 = () => {
         className="absolute right-3 top-5 animate-pulse w-[8%]"
       />
 
-      <div className="flex justify-evenly">
-        <div className="w/1/2 flex items-center justify-center animate-appearance-in">
+      <div className="flex justify-evenly flex-wrap-reverse md:flex-nowrap">
+        <div className="w-full md:w-1/2 flex items-center justify-center animate-appearance-in">
           <Discover />
         </div>
-        <div className="w-[30%]">
+        <div className="w-full md:w-1/2 h-screen">
           <ThreedModel canvasRef={canvasRef} />
         </div>
       </div>
