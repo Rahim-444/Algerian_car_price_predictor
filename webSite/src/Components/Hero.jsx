@@ -65,7 +65,7 @@ const Hero = () => {
       <Navbar />
       {/* <Svg id="logo" className="absolute right-0 top-0 w-[60%] z-0" /> */}
       <div className="flex">
-        <div className=" z-10 text-white   h-screen flex justify-center flex-col ml-28 animate-appearance-in">
+        <div className=" z-10 text-white   h-screen flex justify-center flex-col ml-9 md:ml-28  animate-appearance-in">
           <FirstComponent onLoad={handleFirstLoad} />
           {firstLoaded && <SecondComponent />}
           <ScrollLink
